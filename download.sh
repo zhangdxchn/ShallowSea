@@ -5,5 +5,9 @@
 
 #wget -m -c -np -k -E -p https://www.elastic.co/guide/en/elasticsearch/client/java-api/7.1/index.html
 
-#:wqwget -m -c -np -k -E -p https://m.runoob.com/mongodb/
-wget -m -c -np -k -E -p https://vuex.vuejs.org/zh/guide/
+#wget -m -c -np -k -E -p https://m.runoob.com/mongodb/
+#wget -m -c -np -k -E -p https://vuex.vuejs.org/zh/guide/
+
+#wget -m -c -np -k -E -p https://developers.google.cn/machine-learning/crash-course/
+wget -m -c -np -k -E -p https://element.eleme.io/#/zh-CN
+
