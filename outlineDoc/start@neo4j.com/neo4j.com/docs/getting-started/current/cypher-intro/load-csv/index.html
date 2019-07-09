@@ -1,0 +1,229 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <meta class="swiftype" name="neo4j-site" data-type="enum" content="Reference Docs"></meta>
+      <meta class="swiftype" name="main-search-priority" data-type="integer" content="3"></meta>
+      <title>3.6.&nbsp;Import data - Chapter&nbsp;3.&nbsp;Introduction to Cypher</title>
+      <link rel="stylesheet" type="text/css" href="../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/chunked-base.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/powershell/powershell.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../javascript/colorize.js" type="text/javascript"></script><script src="../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="This tutorial will demonstrate how to import data from CSV files using LOAD CSV."></meta>
+      <link rel="prev" href="../schema/index.html" title="3.5.&nbsp;Defining a schema"></link>
+      <link rel="shortcut icon" href="../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../index.html" id="logo"><img src="../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.5/">Operations Manual</a></li>
+            <li><a href="https://neo4j.com/docs/cypher-manual/3.5/">Cypher Manual</a></li>
+            <li><a href="https://neo4j.com/docs/driver-manual/1.7/">Driver Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.5/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.5/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../schema/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Defining a schema</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.6.&nbsp;Import data</p></span><span class="nav-next"></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="cypher-intro-load-csv">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a class="anchor" href="index.html#cypher-intro-load-csv"></a>3.6.&nbsp;Import data
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>This tutorial will demonstrate how to import data from CSV files using <code class="literal">LOAD CSV</code>.
+            </p>
+         </div>
+         <div class="admonitionblock note">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                     <td class="content">
+                        <p>For a full description of <code class="literal">LOAD CSV</code> , see <a href="https://neo4j.com/docs/cypher-manual/3.5/clauses/load-csv/" class="olink">Cypher Manual &#8594; <code class="literal">LOAD CSV</code></a>.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <p>With <code class="literal">LOAD CSV</code> we can conveniently import data into Neo4j and have access to Cypher to perform actions on the data as desired.
+         </p>
+         <p>In this example, we are given the following CSV files:</p>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem">
+                  <p class="simpara"><span class="emphasis"><em>persons.csv</em></span>, a list of persons:
+                  </p><pre class="screen highlight"><code>id,name
+1,Charlie Sheen
+2,Michael Douglas
+3,Martin Sheen
+4,Morgan Freeman</code></pre></li>
+               <li class="listitem">
+                  <p class="simpara"><span class="emphasis"><em>movies.csv</em></span>, a list of movies:
+                  </p><pre class="screen highlight"><code>id,title,country,year
+1,Wall Street,USA,1987
+2,The American President,USA,1995
+3,The Shawshank Redemption,USA,1994</code></pre></li>
+               <li class="listitem">
+                  <p class="simpara"><span class="emphasis"><em>roles.csv</em></span>, a list of which role was played by some of these persons in each movie:
+                  </p><pre class="screen highlight"><code>personId,movieId,role
+1,1,Bud Fox
+4,1,Carl Fox
+3,1,Gordon Gekko
+4,2,A.J. MacInerney
+3,2,President Andrew Shepherd
+5,3,Ellis Boyd 'Red' Redding</code></pre></li>
+            </ul>
+         </div>
+         <p>By inspecting the files we can see that:</p>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem">Each person has a unique id and a name.</li>
+               <li class="listitem">Each movie has a unique id, a title, a country where it was made, and a year when it was released.</li>
+               <li class="listitem">Using the <span class="emphasis"><em>roles</em></span> file we can deduct which person has acted in which movie, and what role(s) they played.
+               </li>
+            </ul>
+         </div>
+         <p>We can come up with the following simple data model:</p>
+         <div class="informalfigure">
+            <div class="mediaobject"><img src="../../images/getting-started-load-csv01.svg" alt="alt"></img></div>
+         </div>
+         <p>Before starting our imports, we will prepare our database by creating indexes and constraints.
+            Since we expect the <code class="literal">id</code> property on <code class="literal">Person</code> and <code class="literal">Movie</code> to be unique in each set, we will create a unique constraint.
+            This protects us from invalid data since constraint creation will fail if there are multiple nodes with the same id property.
+         </p>
+         <p>Creating a unique constraint also implicitly creates a unique index.
+            The <code class="literal">id</code> property is a temporary property used to look up the appropriate nodes for a relationship when importing the third file.
+            By indexing the <code class="literal">id</code> property, node lookup (e.g. by <code class="literal">MATCH</code>) will be much faster.
+         </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE CONSTRAINT ON (person:Person) ASSERT person.id IS UNIQUE</code></pre><pre class="programlisting highlight"><code data-lang="cypher">CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.id IS UNIQUE</code></pre><p>Additionally, we create an index on the <code class="literal">name</code> property on <code class="literal">Country</code> nodes to ensure fast lookups:
+         </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE INDEX ON :Country(name)</code></pre><div class="admonitionblock important">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-important" title="important"></i></td>
+                     <td class="content">
+                        <p>When using <code class="literal">MERGE</code> or <code class="literal">MATCH</code> with <code class="literal">LOAD CSV</code> we need to make sure we have an <a class="link" href="../schema/index.html#cypher-intro-schema-indexes" title="3.5.2.&nbsp;Using indexes">index</a> or a <a class="link" href="../schema/index.html#cypher-intro-schema-constraints" title="3.5.3.&nbsp;Using constraints">unique constraint</a> on the property that we are merging on.
+                           This will ensure that the query executes in a performant way.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <p>In this example, the CSV files are stored in the default import directory on the database server, and we can access them using
+            a <code class="literal"><a class="link" href="file:///" target="_top">file:///</a></code> URL.
+            Other locations are configurable, and additionally, <code class="literal">LOAD CSV</code> supports accessing CSV files via <code class="literal">HTTPS</code>, <code class="literal">HTTP</code>, and <code class="literal">FTP</code>.
+            For complete instructions, see <a href="https://neo4j.com/docs/cypher-manual/3.5/clauses/load-csv/" class="olink">Cypher Manual &#8594; <code class="literal">LOAD CSV</code></a>.
+         </p>
+         <p>Using the following Cypher queries, we will create a node for each person, a node for each movie and a relationship between
+            the two with a property denoting the role.
+            We are also keeping track of the country in which each movie was made.
+         </p>
+         <p>Let&#8217;s start with importing the <span class="emphasis"><em>persons.csv</em></span> file.
+            Here is the Cypher used to do the import:
+         </p><pre class="programlisting highlight"><code data-lang="cypher">LOAD CSV WITH HEADERS FROM "file:///persons.csv" AS csvLine
+CREATE (p:Person {id: toInteger(csvLine.id), name: csvLine.name})</code></pre><p>Now, let&#8217;s import the movies.
+            This time, we are also creating a relationship to the country in which the movie was made.
+            We are using <code class="literal">MERGE</code> to create nodes that represent countries.
+            Using <code class="literal">MERGE</code> avoids creating duplicate country nodes in the case where multiple movies have been made in the same country.
+         </p><pre class="programlisting highlight"><code data-lang="cypher">LOAD CSV WITH HEADERS FROM "file:///movies.csv" AS csvLine
+MERGE (country:Country {name: csvLine.country})
+CREATE (movie:Movie {id: toInteger(csvLine.id), title: csvLine.title, year:toInteger(csvLine.year)})
+CREATE (movie)-[:MADE_IN]-&gt;(country)</code></pre><p>Finally, we will create relationships between the persons and the movies; one actor can participate in many movies, and one
+            movie has many actors in it.
+            Now importing the relationships is a matter of finding the nodes and then creating relationships between them.
+         </p><pre class="programlisting highlight"><code data-lang="cypher">USING PERIODIC COMMIT 500
+LOAD CSV WITH HEADERS FROM "file:///roles.csv" AS csvLine
+MATCH (person:Person {id: toInteger(csvLine.personId)}),(movie:Movie {id: toInteger(csvLine.movieId)})
+CREATE (person)-[:PLAYED {role: csvLine.role}]-&gt;(movie)</code></pre><div class="admonitionblock note">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                     <td class="content">
+                        <p>For larger data files, it is useful to use the hint <code class="literal">USING PERIODIC COMMIT</code> clause of <code class="literal">LOAD CSV</code>.
+                           This hint tells Neo4j that the query might build up inordinate amounts of transaction state, and so needs to be periodically
+                           committed.
+                           For more information, see <a href="https://neo4j.com/docs/cypher-manual/3.5/query-tuning/using/#query-using-periodic-commit-hint" class="olink">Section&nbsp;6.5.5, &#8220;<code class="literal">PERIODIC COMMIT</code> query hint&#8221;</a>.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <p>Finally, since the <code class="literal">id</code> property was only necessary to import the relationships, we can drop the constraints and the <code class="literal">id</code> property from all movie and person nodes.
+         </p><pre class="programlisting highlight"><code data-lang="cypher">DROP CONSTRAINT ON (person:Person) ASSERT person.id IS UNIQUE</code></pre><pre class="programlisting highlight"><code data-lang="cypher">DROP CONSTRAINT ON (movie:Movie) ASSERT movie.id IS UNIQUE</code></pre><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n)
+WHERE n:Person OR n:Movie
+REMOVE n.id</code></pre><p>This is the resulting graph:</p>
+         <div class="informalfigure">
+            <div class="mediaobject"><img src="../../images/getting-started-load-csv02.svg" alt="alt"></img></div>
+         </div>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          (function() {
+          var didInit = false;
+          function initMunchkin() {
+            if(didInit === false) {
+              didInit = true;
+              Munchkin.init('710-RRC-335');
+            }
+          }
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = '//munchkin.marketo.net/munchkin.js';
+          s.onreadystatechange = function() {
+            if (this.readyState == 'complete' || this.readyState == 'loaded') {
+              initMunchkin();
+            }
+          };
+          s.onload = initMunchkin;
+          document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+        </script></footer>
+   </body>
+</html>

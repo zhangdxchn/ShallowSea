@@ -1,0 +1,1357 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>4.4.&nbsp;Working with Cypher values - Chapter&nbsp;4.&nbsp;Drivers</title>
+      <link rel="stylesheet" type="text/css" href="../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../javascript/colorize.js" type="text/javascript"></script><script src="../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="This section describes the types and values used by Cypher and how they map to native language types."></meta>
+      <link rel="prev" href="../sessions-transactions/index.html" title="4.3.&nbsp;Sessions and transactions"></link>
+      <link rel="next" href="../../http-api/index.html" title="Chapter&nbsp;5.&nbsp;HTTP API"></link>
+      <link rel="shortcut icon" href="../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../index.html" id="logo"><img src="../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../sessions-transactions/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Sessions and transactions</a></span><span class="nav-current">
+               <p class="nav-title hidden">4.4.&nbsp;Working with Cypher values</p></span><span class="nav-next"><a accesskey="n" href="../../http-api/index.html">HTTP API<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="driver-cypher-values">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a class="anchor" href="index.html#driver-cypher-values"></a>4.4.&nbsp;Working with Cypher values
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>This section describes the types and values used by Cypher and how they map to native language types.</p>
+         </div>
+         <section class="section" id="driver-neo4j-type-system">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#driver-neo4j-type-system"></a>4.4.1.&nbsp;The Cypher type system
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>Drivers translate between application language types and the Cypher type system.
+               To pass parameters and process results, it is important to know the basics of how Cypher works with types and to understand
+               how the Cypher types are mapped in the driver.
+            </p>
+            <p>The table below shows the available data types.
+               All can be potentially found in results although not all can be used as parameters.
+            </p>
+            <div class="informalexample">
+               <div class="informaltable">
+                  <div class="table" id="d0e65551">
+                     <table class="informaltable" border="1">
+                        <colgroup>
+                           <col class="col_1"></col>
+                           <col class="col_2"></col>
+                           <col class="col_3"></col>
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th style="text-align: left; vertical-align: top; ">Cypher Type</th>
+                              <th style="text-align: left; vertical-align: top; ">Parameter</th>
+                              <th style="text-align: left; vertical-align: top; ">Result</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">null</code>*
+                                 </p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">List</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Map</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Boolean</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Integer</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Float</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">String</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">ByteArray</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Date</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Time</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">LocalTime</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">DateTime</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">LocalDateTime</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Duration</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Point</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Node</code>**
+                                 </p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Relationship</code>**
+                                 </p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">Path</code>**
+                                 </p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>&#10004;</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <p>* The null marker is not a type but a placeholder for absence of value.
+                  For information on how to work with null in Cypher, please refer to <a class="xref" href="../../cypher/syntax/working-with-null/index.html" title="3.2.14.&nbsp;Working with null">Section&nbsp;3.2.14, &#8220;Working with <code class="literal">null</code>&#8221;</a>.
+               </p>
+               <p>** Nodes, relationships and paths are passed in results as snapshots of the original graph entities.
+                     While the original entity IDs are included in these snapshots, no permanent link is retained back to the underlying server-side
+                  entities, which may be deleted or otherwise altered independently of the client copies.
+                     Graph structures may not be used as parameters because it depends on application context whether such a parameter would
+                  be passed by reference or by value, and Cypher provides no mechanism to denote this.
+                     Equivalent functionality is available by simply passing either the ID for pass-by-reference, or an extracted map of properties
+                  for pass-by-value.
+               </p>
+            </div>
+            <p>The Neo4j driver maps Cypher types to and from native language types as depicted in the table below.
+               Custom types (those not available in the language or standard library) are highlighted in <span class="strong"><strong>bold</strong></span>.
+            </p>
+            <div class="example tabbed-example" id="d0e65772">
+               <div class="example-title">Example&nbsp;4.24.&nbsp;Map Neo4j types to native language types</div>
+               <div class="example tabbed-example-contents">
+                  <div class="informalexample include-with-dotnet">
+                     <div class="informaltable">
+                        <div class="table" id="d0e65776">
+                           <table class="informaltable" border="1">
+                              <colgroup>
+                                 <col class="col_1"></col>
+                                 <col class="col_2"></col>
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th style="text-align: left; vertical-align: top; ">Neo4j type</th>
+                                    <th style="text-align: left; vertical-align: top; ">.NET type</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">null</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">null</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">List</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">IList&lt;object&gt;</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Map</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">IDictionary&lt;string, object&gt;</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Boolean</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">bool</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Integer</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">long</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Float</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">double</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">String</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">string</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">ByteArray</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">byte[]</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Date</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">LocalDate</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Time</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">OffsetTime</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">LocalTime</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">DateTime</code>*
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">ZonedDateTime</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalDateTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">LocalDateTime</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Duration</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Duration</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Point</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Point</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Node</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">INode</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Relationship</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">IRelationship</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Path</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">IPath</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <p>* Time zone names adhere to the <a class="link" href="https://www.iana.org/time-zones" target="_top">IANA system</a>, rather than the <a class="link" href="https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones" target="_top">Windows system</a>.
+                        Inbound conversion is carried out using <a class="link" href="http://cldr.unicode.org/development/development-process/design-proposals/extended-windows-olson-zid-mapping" target="_top">Extended Windows-Olson zid mapping</a> as defined by Unicode CLDR.
+                     </p>
+                  </div>
+                  <div class="informalexample include-with-java">
+                     <div class="informaltable">
+                        <div class="table" id="d0e65972">
+                           <table class="informaltable" border="1">
+                              <colgroup>
+                                 <col class="col_1"></col>
+                                 <col class="col_2"></col>
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th style="text-align: left; vertical-align: top; ">Neo4j type</th>
+                                    <th style="text-align: left; vertical-align: top; ">Java type</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">null</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">null</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">List</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">List&lt;Object&gt;</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Map</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Map&lt;String, Object&gt;</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Boolean</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">boolean</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Integer</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">long</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Float</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">double</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">String</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">String</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">ByteArray</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">byte[]</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Date</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalDate</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Time</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">OffsetTime</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalTime</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">DateTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">ZonedDateTime</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalDateTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalDateTime</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Duration</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">IsoDuration</code></strong></span>*
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Point</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Point</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Node</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Node</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Relationship</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Relationship</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Path</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Path</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <p>* A <code class="literal">Duration</code> or <code class="literal">Period</code> passed as a parameter will always be implicitly converted to <code class="literal">IsoDuration</code>.
+                     </p>
+                  </div>
+                  <div class="informalexample include-with-javascript">
+                     <div class="informaltable">
+                        <div class="table" id="d0e66163">
+                           <table class="informaltable" border="1">
+                              <colgroup>
+                                 <col class="col_1"></col>
+                                 <col class="col_2"></col>
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th style="text-align: left; vertical-align: top; ">Neo4j type</th>
+                                    <th style="text-align: left; vertical-align: top; ">JavaScript type</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">null</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">null</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">List</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Array</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Map</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Object</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Boolean</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Boolean</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Integer</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Integer</code></strong></span>*
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Float</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Number</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">String</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">String</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">ByteArray</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Int8Array</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Date</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Date</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Time</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Time</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">LocalTime</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">DateTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">DateTime</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalDateTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">LocalDateTime</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Duration</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Duration</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Point</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Point</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Node</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Node</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Relationship</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Relationship</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Path</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Path</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <p>* JavaScript has no native integer type so a custom type is provided. For convenience, this can be disabled through configuration
+                        so that the native Number type is used instead. Note that this can lead to a loss of precision.
+                     </p>
+                  </div>
+                  <div class="informalexample include-with-python">
+                     <div class="informaltable">
+                        <div class="table" id="d0e66351">
+                           <table class="informaltable" border="1">
+                              <colgroup>
+                                 <col class="col_1"></col>
+                                 <col class="col_2"></col>
+                                 <col class="col_3"></col>
+                              </colgroup>
+                              <thead>
+                                 <tr>
+                                    <th style="text-align: left; vertical-align: top; ">Neo4j type</th>
+                                    <th style="text-align: left; vertical-align: top; ">Python 2 type</th>
+                                    <th style="text-align: left; vertical-align: top; ">Python 3 type</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">null</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">None</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">None</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">List</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">list</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">list</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Map</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">dict</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">dict</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Boolean</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">bool</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">bool</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Integer</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">int / long</code>*
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">int</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Float</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">float</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">float</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">String</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">unicode</code>**
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">str</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">ByteArray</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">bytearray</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">bytearray</code></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Date</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Date</code></strong></span></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Date</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Time</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Time</code></strong></span>&#8224;
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Time</code></strong></span>&#8224;
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Time</code></strong></span>&#8224;&#8224;
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Time</code></strong></span>&#8224;&#8224;
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">DateTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.DateTime</code></strong></span>&#8224;
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.DateTime</code></strong></span>&#8224;
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">LocalDateTime</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.DateTime</code></strong></span>&#8224;&#8224;
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.DateTime</code></strong></span>&#8224;&#8224;
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Duration</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Duration</code></strong></span>***
+                                       </p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">neotime.Duration</code></strong></span>***
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Point</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Point</code></strong></span></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Point</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Node</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Node</code></strong></span></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Node</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Relationship</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Relationship</code></strong></span></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Relationship</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><code class="literal">Path</code></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Path</code></strong></span></p>
+                                    </td>
+                                    <td style="text-align: left; vertical-align: top; ">
+                                       <p><span class="strong"><strong><code class="literal">Path</code></strong></span></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <p>* While Cypher uses 64-bit signed integers, <code class="literal">int</code> can only hold integers up to <code class="literal">sys.maxint</code> in Python 2; <code class="literal">long</code> is used for values above this.
+                     </p>
+                     <p>** In Python 2, a <code class="literal">str</code> passed as a parameter will always be implicitly converted to <code class="literal">unicode</code> via UTF-8.
+                     </p>
+                     <p>*** A <code class="literal">timedelta</code> passed as a parameter will always be implicitly converted to <code class="literal">neotime.Duration</code>.
+                     </p>
+                     <p>&#8224; Where tzinfo is not None.</p>
+                     <p>&#8224;&#8224; Where tzinfo is None.</p>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="section" id="driver-result">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#driver-result"></a>4.4.2.&nbsp;Statement results
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>A statement result is comprised of a stream of records.
+               The result is typically handled by the receiving application as it arrives, although it is also possible to retain all or
+               part of a result for future consumption.
+            </p>
+            <div class="figure" id="d0e66667">
+               <div class="figure-title">Figure&nbsp;4.2.&nbsp;Result stream</div>
+               <div class="figure-contents">
+                  <div class="mediaobject"><img src="../../images/driver-result-stream.svg" alt="driver result stream"></img></div>
+               </div>
+            </div>
+            <section class="section" id="driver-result-record">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#driver-result-record"></a>4.4.2.1.&nbsp;Records
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <p>A record provides an immutable view of part of a result.
+                  It is an ordered map of keys and values.
+                  As values within a record are both keyed and ordered, that value can be accessed either by position (0-based integer) or by
+                  key (string).
+               </p>
+            </section>
+            <section class="section" id="driver-result-buffer">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#driver-result-buffer"></a>4.4.2.2.&nbsp;The buffer
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <div class="figure" id="d0e66684">
+                  <div class="figure-title">Figure&nbsp;4.3.&nbsp;Result buffer</div>
+                  <div class="figure-contents">
+                     <div class="mediaobject"><img src="../../images/driver-result-buffer.svg" alt="driver result buffer"></img></div>
+                  </div>
+               </div>
+               <p>Most drivers contain a result buffer.
+                  This provides a staging point for results, and divides result handling into <span class="emphasis"><em>fetching</em></span> (moving from the network to the buffer) and <span class="emphasis"><em>consuming</em></span> (moving from the buffer to the application).
+               </p>
+               <p>If results are consumed in the same order as they are produced, records merely pass through the buffer; if they are consumed
+                  out of order, the buffer will be utilized to retain records until they are consumed by the application.
+                  For large results, this may require a significant amount of memory and impact performance. For this reason, it is recommended
+                  to consume results in order wherever possible.
+               </p>
+            </section>
+            <section class="section" id="driver-result-consume">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#driver-result-consume"></a>4.4.2.3.&nbsp;Consuming the stream
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <p>Query results will often be consumed as a stream.
+                  Drivers provide a language-idiomatic way to iterate through a result stream.
+               </p>
+               <div class="example tabbed-example" id="d0e66708">
+                  <div class="example-title">Example&nbsp;4.25.&nbsp;Consuming the stream</div>
+                  <div class="example tabbed-example-contents">
+                     <div class="informalexample include-with-dotnet"><pre class="programlisting highlight"><code data-lang="csharp">public List&lt;string&gt; GetPeople()
+{
+    using (var session = Driver.Session())
+    {
+        return session.ReadTransaction(tx =&gt;
+        {
+            var result = tx.Run("MATCH (a:Person) RETURN a.name ORDER BY a.name");
+            return result.Select(record =&gt; record[0].As&lt;string&gt;()).ToList();
+        });
+    }
+}</code></pre></div>
+                     <div class="informalexample include-with-java"><pre class="programlisting highlight"><code data-lang="java">public List&lt;String&gt; getPeople()
+{
+    try ( Session session = driver.session() )
+    {
+        return session.readTransaction( new TransactionWork&lt;List&lt;String&gt;&gt;()
+        {
+            @Override
+            public List&lt;String&gt; execute( Transaction tx )
+            {
+                return matchPersonNodes( tx );
+            }
+        } );
+    }
+}
+
+private static List&lt;String&gt; matchPersonNodes( Transaction tx )
+{
+    List&lt;String&gt; names = new ArrayList&lt;&gt;();
+    StatementResult result = tx.run( "MATCH (a:Person) RETURN a.name ORDER BY a.name" );
+    while ( result.hasNext() )
+    {
+        names.add( result.next().get( 0 ).asString() );
+    }
+    return names;
+}</code></pre></div>
+                     <div class="informalexample include-with-javascript"><pre class="programlisting highlight"><code data-lang="javascript">const session = driver.session();
+const result = session.run('MATCH (a:Person) RETURN a.name ORDER BY a.name');
+const collectedNames = [];
+
+result.subscribe({
+  onNext: record =&gt; {
+    const name = record.get(0);
+    collectedNames.push(name);
+  },
+  onCompleted: () =&gt; {
+    session.close();
+
+    console.log('Names: ' + collectedNames.join(', '));
+  },
+  onError: error =&gt; {
+    console.log(error);
+  }
+});</code></pre></div>
+                     <div class="informalexample include-with-python"><pre class="programlisting highlight"><code data-lang="python">def get_people(self):
+    with self._driver.session() as session:
+        return session.read_transaction(self.match_person_nodes)
+
+@staticmethod
+def match_person_nodes(tx):
+    result = tx.run("MATCH (a:Person) RETURN a.name ORDER BY a.name")
+    return [record["a.name"] for record in result]</code></pre></div>
+                  </div>
+               </div>
+            </section>
+            <section class="section" id="driver-result-retain">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#driver-result-retain"></a>4.4.2.4.&nbsp;Retaining results
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <p>The result record stream is available until another statement is run in the session, or until the current transaction is closed.
+                  To hold on to the results beyond this scope, the results need to be explicitly retained.
+                  For retaining results, each driver offers methods that collect the result stream and translate it into standard data structures
+                  for that language.
+                  Retained results can be processed while the session is free to take on the next workload.
+                  The saved results can also be used directly to run a new statement.
+               </p>
+               <div class="example tabbed-example" id="d0e66728">
+                  <div class="example-title">Example&nbsp;4.26.&nbsp;Retain results for further processing</div>
+                  <div class="example tabbed-example-contents">
+                     <div class="informalexample include-with-dotnet"><pre class="programlisting highlight"><code data-lang="csharp">public int AddEmployees(string companyName)
+{
+    using (var session = Driver.Session())
+    {
+        var persons = session.ReadTransaction(tx =&gt; tx.Run("MATCH (a:Person) RETURN a.name AS name").ToList());
+        return persons.Sum(person =&gt; session.WriteTransaction(tx =&gt;
+        {
+            tx.Run("MATCH (emp:Person {name: $person_name}) " +
+                "MERGE (com:Company {name: $company_name}) " +
+                "MERGE (emp)-[:WORKS_FOR]-&gt;(com)",
+                new {person_name = person["name"].As&lt;string&gt;(), company_name = companyName});
+            return 1;
+        }));
+    }
+}</code></pre></div>
+                     <div class="informalexample include-with-java"><pre class="programlisting highlight"><code data-lang="java">public int addEmployees( final String companyName )
+{
+    try ( Session session = driver.session() )
+    {
+        int employees = 0;
+        List&lt;Record&gt; persons = session.readTransaction( new TransactionWork&lt;List&lt;Record&gt;&gt;()
+        {
+            @Override
+            public List&lt;Record&gt; execute( Transaction tx )
+            {
+                return matchPersonNodes( tx );
+            }
+        } );
+        for ( final Record person : persons )
+        {
+            employees += session.writeTransaction( new TransactionWork&lt;Integer&gt;()
+            {
+                @Override
+                public Integer execute( Transaction tx )
+                {
+                    tx.run( "MATCH (emp:Person {name: $person_name}) " +
+                            "MERGE (com:Company {name: $company_name}) " +
+                            "MERGE (emp)-[:WORKS_FOR]-&gt;(com)",
+                            parameters( "person_name", person.get( "name" ).asString(), "company_name",
+                                    companyName ) );
+                    return 1;
+                }
+            } );
+        }
+        return employees;
+    }
+}
+
+private static List&lt;Record&gt; matchPersonNodes( Transaction tx )
+{
+    return tx.run( "MATCH (a:Person) RETURN a.name AS name" ).list();
+}</code></pre></div>
+                     <div class="informalexample include-with-javascript"><pre class="programlisting highlight"><code data-lang="javascript">const session = driver.session();
+
+const readTxPromise = session.readTransaction(tx =&gt; tx.run('MATCH (a:Person) RETURN a.name AS name'));
+
+const addEmployeesPromise = readTxPromise.then(result =&gt; {
+  const nameRecords = result.records;
+
+  let writeTxsPromise = Promise.resolve();
+  for (let i = 0; i &lt; nameRecords.length; i++) {
+    const name = nameRecords[i].get('name');
+
+    writeTxsPromise = writeTxsPromise.then(() =&gt;
+      session.writeTransaction(tx =&gt;
+        tx.run(
+          'MATCH (emp:Person {name: $person_name}) ' +
+          'MERGE (com:Company {name: $company_name}) ' +
+          'MERGE (emp)-[:WORKS_FOR]-&gt;(com)',
+          {'person_name': name, 'company_name': companyName})));
+  }
+
+  return writeTxsPromise.then(() =&gt; nameRecords.length);
+});
+
+addEmployeesPromise.then(employeesCreated =&gt; {
+  session.close();
+  console.log('Created ' + employeesCreated + ' employees');
+});</code></pre></div>
+                     <div class="informalexample include-with-python"><pre class="programlisting highlight"><code data-lang="python">def add_employees(self, company_name):
+    with self._driver.session() as session:
+        employees = 0
+        persons = session.read_transaction(self.match_person_nodes)
+
+        for person in persons:
+            employees += session.write_transaction(self.add_employee_to_company, person, company_name)
+
+        return employees
+
+@staticmethod
+def add_employee_to_company(tx, person, company_name):
+    tx.run("MATCH (emp:Person {name: $person_name}) "
+           "MERGE (com:Company {name: $company_name}) "
+           "MERGE (emp)-[:WORKS_FOR]-&gt;(com)",
+           person_name=person["name"], company_name=company_name)
+    return 1
+
+@staticmethod
+def match_person_nodes(tx):
+    return list(tx.run("MATCH (a:Person) RETURN a.name AS name"))</code></pre></div>
+                  </div>
+               </div>
+            </section>
+         </section>
+         <section class="section" id="driver-result-summary">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#driver-result-summary"></a>4.4.3.&nbsp;Statement result summaries
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>Supplementary information such as query statistics, timings and server information can be obtained from the statement result
+               summary.
+               If this detail is accessed before the entire result has been consumed, the remainder of the result will be buffered.
+            </p>
+            <p>See also the <a class="link" href="../get-started/index.html#driver-api-docs" title="4.1.5.&nbsp;Driver API docs">language-specific driver API documentation</a>.
+            </p>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

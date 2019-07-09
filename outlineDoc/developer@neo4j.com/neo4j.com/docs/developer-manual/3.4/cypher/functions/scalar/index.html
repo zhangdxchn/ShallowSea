@@ -1,0 +1,2317 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>3.4.2.&nbsp;Scalar functions - 3.4.&nbsp;Functions</title>
+      <link rel="stylesheet" type="text/css" href="../../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../../javascript/colorize.js" type="text/javascript"></script><script src="../../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="Scalar functions return a single value."></meta>
+      <link rel="prev" href="../predicate/index.html" title="3.4.1.&nbsp;Predicate functions"></link>
+      <link rel="next" href="../aggregating/index.html" title="3.4.3.&nbsp;Aggregating functions"></link>
+      <link rel="shortcut icon" href="../../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../../index.html" id="logo"><img src="../../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../predicate/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Predicate functions</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.4.2.&nbsp;Scalar functions</p></span><span class="nav-next"><a accesskey="n" href="../aggregating/index.html">Aggregating functions<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="query-functions-scalar">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title"><a class="anchor" href="index.html#query-functions-scalar"></a>3.4.2.&nbsp;Scalar functions
+                  </h3>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>Scalar functions return a single value.</p>
+         </div>
+         <div class="admonitionblock important">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-important" title="important"></i></td>
+                     <td class="content">
+                        <p>The <code class="literal">length()</code> and <code class="literal">size()</code> functions are quite similar, and so it is important to take note of the difference.
+                                Owing to backwards compatibility, <code class="literal">length()</code> currently works on four types: strings, paths, lists and pattern expressions.
+                                However, it is recommended to use <code class="literal">length()</code> only for paths, and the <code class="literal">size()</code> function for strings, lists and pattern expressions.
+                                <code class="literal">length()</code> on those types may be deprecated in future.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="admonitionblock note">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                     <td class="content">
+                        <p>The <code class="literal">timestamp()</code> function returns the equivalent value of <code class="literal">datetime().epochMillis</code>.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="admonitionblock note">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                     <td class="content">
+                        <p>The function <code class="literal">toInt()</code> has been superseded by <code class="literal">toInteger()</code>, and will be removed in a future release.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <p>Functions:</p>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem"><a class="link" href="index.html#functions-coalesce" title="3.4.2.1.&nbsp;coalesce()">coalesce()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-endnode" title="3.4.2.2.&nbsp;endNode()">endNode()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-head" title="3.4.2.3.&nbsp;head()">head()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-id" title="3.4.2.4.&nbsp;id()">id()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-last" title="3.4.2.5.&nbsp;last()">last()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-length" title="3.4.2.6.&nbsp;length()">length()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-properties" title="3.4.2.7.&nbsp;properties()">properties()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-randomuuid" title="3.4.2.8.&nbsp;randomUUID()">randomUUID()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-size" title="3.4.2.9.&nbsp;size()">size()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-size-of-pattern-expression" title="3.4.2.10.&nbsp;size() applied to pattern expression">Size of pattern expression</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-size-of-string" title="3.4.2.11.&nbsp;size() applied to string">Size of string</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-startnode" title="3.4.2.12.&nbsp;startNode()">startNode()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-timestamp" title="3.4.2.13.&nbsp;timestamp()">timestamp()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-toboolean" title="3.4.2.14.&nbsp;toBoolean()">toBoolean()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-tofloat" title="3.4.2.15.&nbsp;toFloat()">toFloat()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-tointeger" title="3.4.2.16.&nbsp;toInteger()">toInteger()</a></li>
+               <li class="listitem"><a class="link" href="index.html#functions-type" title="3.4.2.17.&nbsp;type()">type()</a></li>
+            </ul>
+         </div>
+         <div class="figure" id="d0e29271">
+            <div class="figure-title">Figure&nbsp;3.23.&nbsp;Graph</div>
+            <div class="figure-contents">
+               <div class="mediaobject"><img src="../../../images/Scalar&#32;functions-1.svg" alt="alt"></img></div>
+            </div>
+         </div>
+         <section class="section" id="functions-coalesce">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-coalesce"></a>3.4.2.1.&nbsp;coalesce()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">coalesce()</code> returns the first non-<code class="literal">null</code> value in the given list of expressions.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">coalesce(expression [, expression]*)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29299">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The type of the value returned will be that of the first non-<code class="literal">null</code> expression.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29313">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">expression</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression which may return <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29338">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">null</code> will be returned if all the arguments are <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a)
+WHERE a.name = 'Alice'
+RETURN coalesce(a.hairColor, a.eyes)</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e29359">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.217.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">coalesce(a.hairColor, a.eyes)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"brown"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (a)
+                     WHERE a.name = 'Alice'
+                     RETURN coalesce(a.hairColor, a.eyes)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-endnode">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-endnode"></a>3.4.2.2.&nbsp;endNode()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">endNode()</code> returns the end node of a relationship.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">endNode(relationship)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29403">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A Node.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29414">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">relationship</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a relationship.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29436">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">endNode(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (x:Developer)-[r]-()
+RETURN endNode(r)</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e29457">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.218.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">endNode(r)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>2 rows</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">Node[2]{name:"Charlie",age:53,eyes:"green"}</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">Node[1]{name:"Bob",age:25,eyes:"blue"}</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (x:Developer)-[r]-()
+                     RETURN endNode(r)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-head">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-head"></a>3.4.2.3.&nbsp;head()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">head()</code> returns the first element in a list.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">head(list)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29506">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The type of the value returned will be that of the first element of <code class="literal">list</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29520">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">list</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a list.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29542">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">head(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If the first element in <code class="literal">list</code> is <code class="literal">null</code>, <code class="literal">head(list)</code> will return <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a)
+WHERE a.name = 'Eskil'
+RETURN a.array, head(a.array)</code></pre><p>
+               
+            </p>
+            <p>The first element in the list is returned.</p>
+            <div class="table" id="d0e29581">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.219.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">a.array</th>
+                        <th style="text-align: left; vertical-align: top; ">head(a.array)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">["one","two","three"]</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"one"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (a)
+                     WHERE a.name = 'Eskil'
+                     RETURN a.array, head(a.array)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-id">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-id"></a>3.4.2.4.&nbsp;id()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">id()</code> returns the id of a relationship or node.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">id(expression)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29632">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An Integer.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29643">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">expression</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a node or a relationship.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29665">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">id(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a)
+RETURN id(a)</code></pre><p>
+               
+            </p>
+            <p>The node id for each of the nodes is returned.</p>
+            <div class="table" id="d0e29688">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.220.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">id(a)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>5 rows</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">0</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">1</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">2</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">3</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">4</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (a)
+                     RETURN id(a)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-last">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-last"></a>3.4.2.5.&nbsp;last()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">last()</code> returns the last element in a list.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">last(expression)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29752">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The type of the value returned will be that of the last element of <code class="literal">list</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29766">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">list</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a list.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29788">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">last(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If the last element in <code class="literal">list</code> is <code class="literal">null</code>, <code class="literal">last(list)</code> will return <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a)
+WHERE a.name = 'Eskil'
+RETURN a.array, last(a.array)</code></pre><p>
+               
+            </p>
+            <p>The last element in the list is returned.</p>
+            <div class="table" id="d0e29827">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.221.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">a.array</th>
+                        <th style="text-align: left; vertical-align: top; ">last(a.array)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">["one","two","three"]</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"three"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (a)
+                     WHERE a.name = 'Eskil'
+                     RETURN a.array, last(a.array)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-length">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-length"></a>3.4.2.6.&nbsp;length()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">length()</code> returns the length of a path.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">length(path)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29878">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An Integer.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29889">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">path</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a path.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29911">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">length(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH p =(a)--&gt;(b)--&gt;(c)
+WHERE a.name = 'Alice'
+RETURN length(p)</code></pre><p>
+               
+            </p>
+            <p>The length of the path <code class="literal">p</code> is returned.
+            </p>
+            <div class="table" id="d0e29937">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.222.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">length(p)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>3 rows</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">2</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">2</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">2</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH p = (a)--&gt;(b)--&gt;(c)
+                     WHERE a.name = 'Alice'
+                     RETURN length(p)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-properties">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-properties"></a>3.4.2.7.&nbsp;properties()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">properties()</code> returns a map containing all the properties of a node or relationship.
+               If the argument is already a map, it is returned unchanged.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">properties(expression)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e29991">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A Map.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30002">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">expression</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a node, a relationship, or a map.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30024">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">properties(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (p:Person { name: 'Stefan', city: 'Berlin' })
+RETURN properties(p)</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30045">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.223.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">properties(p)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row
+                              Nodes created: 1
+                              Properties set: 2
+                              Labels added: 1
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">{city -&gt; "Berlin", name -&gt; "Stefan"}</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     CREATE (p:Person {name: 'Stefan', city: 'Berlin'})
+                     RETURN properties(p)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-randomuuid">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-randomuuid"></a>3.4.2.8.&nbsp;randomUUID()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">randomUUID()</code> returns a randomly-generated Universally Unique Identifier (UUID), also known as a Globally Unique Identifier (GUID).
+               This is a 128-bit value with strong guarantees of uniqueness.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">randomUUID()</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30095">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A String.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN randomUUID() AS uuid</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30111">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.224.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">uuid</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"e82217f1-3bec-4e81-bb13-1f7b72629e3b"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p>A randomly-generated UUID is returned.</p>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     RETURN randomUUID() AS uuid
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-size">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-size"></a>3.4.2.9.&nbsp;size()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">size()</code> returns the number of elements in a list.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">size(list)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30157">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An Integer.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30168">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">list</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a list.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30190">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">size(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN size(['Alice', 'Bob'])</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30211">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.225.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">size(['Alice', 'Bob'])</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">2</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p>The number of elements in the list is returned.</p>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     RETURN size(['Alice', 'Bob'])
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-size-of-pattern-expression">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-size-of-pattern-expression"></a>3.4.2.10.&nbsp;size() applied to pattern expression
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>This is the same <code class="literal">size()</code> method as described above, but instead of passing in a list directly, a pattern expression can be provided that can be used
+               in a match query to provide a new set of results.
+               These results are a <span class="emphasis"><em>list</em></span> of paths.
+               The size of the result is calculated, not the length of the expression itself.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">size(pattern expression)</code></p>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30261">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">pattern expression</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A pattern expression that returns a list.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a)
+WHERE a.name = 'Alice'
+RETURN size((a)--&gt;()--&gt;()) AS fof</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30288">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.226.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">fof</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">3</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p>The number of sub-graphs matching the pattern expression is returned.</p>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (a)
+                     WHERE a.name = 'Alice'
+                     RETURN size((a)--&gt;()--&gt;()) AS fof
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-size-of-string">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-size-of-string"></a>3.4.2.11.&nbsp;size() applied to string
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">size()</code> returns the number of Unicode characters in a string.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">size(string)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30334">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An Integer.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30345">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">string</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a string value.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30367">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">size(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a)
+WHERE size(a.name)&gt; 6
+RETURN size(a.name)</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30388">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.227.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">size(a.name)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">7</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p>The number of characters in the string <span class="strong"><strong>'Charlie'</strong></span> is returned.
+            </p>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (a)
+                     WHERE size(a.name) &gt; 6
+                     RETURN size(a.name)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-startnode">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-startnode"></a>3.4.2.12.&nbsp;startNode()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">startNode()</code> returns the start node of a relationship.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">startNode(relationship)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30437">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A Node.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30448">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">relationship</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a relationship.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30470">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">startNode(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (x:Developer)-[r]-()
+RETURN startNode(r)</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30491">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.228.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">startNode(r)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>2 rows</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">Node[0]{name:"Alice",age:38,eyes:"brown"}</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">Node[0]{name:"Alice",age:38,eyes:"brown"}</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (x:Developer)-[r]-()
+                     RETURN startNode(r)
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-timestamp">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-timestamp"></a>3.4.2.13.&nbsp;timestamp()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">timestamp()</code> returns the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">timestamp()</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30540">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An Integer.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30551">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">timestamp()</code> will return the same value during one entire query, even for long-running queries.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN timestamp()</code></pre><p>
+               
+            </p>
+            <p>The time in milliseconds is returned.</p>
+            <div class="table" id="d0e30571">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.229.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">timestamp()</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">1558547853012</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     RETURN timestamp()
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-toboolean">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-toboolean"></a>3.4.2.14.&nbsp;toBoolean()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">toBoolean()</code> converts a string value to a boolean value.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">toBoolean(expression)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30615">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A Boolean.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30626">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">expression</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a boolean or string value.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30648">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">toBoolean(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If <code class="literal">expression</code> is a boolean value, it will be returned unchanged.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If the parsing fails, <code class="literal">null</code> will be returned.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN toBoolean('TRUE'), toBoolean('not a boolean')</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30683">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.230.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">toBoolean('TRUE')</th>
+                        <th style="text-align: left; vertical-align: top; ">toBoolean('not a boolean')</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">true</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     RETURN toBoolean('TRUE'), toBoolean('not a boolean')
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-tofloat">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-tofloat"></a>3.4.2.15.&nbsp;toFloat()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">toFloat()</code> converts an integer or string value to a floating point number.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">toFloat(expression)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30734">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A Float.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30745">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">expression</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a numeric or string value.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30767">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">toFloat(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If <code class="literal">expression</code> is a floating point number, it will be returned unchanged.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If the parsing fails, <code class="literal">null</code> will be returned.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN toFloat('11.5'), toFloat('not a number')</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30802">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.231.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">toFloat('11.5')</th>
+                        <th style="text-align: left; vertical-align: top; ">toFloat('not a number')</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">11.5</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     RETURN toFloat('11.5'), toFloat('not a number')
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-tointeger">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-tointeger"></a>3.4.2.16.&nbsp;toInteger()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">toInteger()</code> converts a floating point or string value to an integer value.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">toInteger(expression)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30853">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An Integer.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30864">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">expression</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a numeric or string value.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30886">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">toInteger(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If <code class="literal">expression</code> is an integer value, it will be returned unchanged.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>If the parsing fails, <code class="literal">null</code> will be returned.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN toInteger('42'), toInteger('not a number')</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e30921">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.232.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">toInteger('42')</th>
+                        <th style="text-align: left; vertical-align: top; ">toInteger('not a number')</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">42</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     RETURN toInteger('42'), toInteger('not a number')
+                     </strong></span></p>
+         </section>
+         <section class="section" id="functions-type">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#functions-type"></a>3.4.2.17.&nbsp;type()
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">type()</code> returns the string representation of the relationship type.
+            </p>
+            <p><span class="strong"><strong>Syntax:</strong></span> <code class="literal">type(relationship)</code></p>
+            <p><span class="strong"><strong>Returns:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30972">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A String.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Arguments:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e30983">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Name</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">relationship</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An expression that returns a relationship.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="strong"><strong>Considerations:</strong></span></p>
+            <div class="informaltable">
+               <div class="table" id="d0e31005">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">type(null)</code> returns <code class="literal">null</code>.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n)-[r]-&gt;()
+WHERE n.name = 'Alice'
+RETURN type(r)</code></pre><p>
+               
+            </p>
+            <p>The relationship type of <code class="literal">r</code> is returned.
+            </p>
+            <div class="table" id="d0e31031">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.233.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">type(r)</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>2 rows</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"KNOWS"</code></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"KNOWS"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (alice:Developer {name:'Alice', age: 38, eyes: 'brown'}),
+                         (bob {name: 'Bob', age: 25, eyes: 'blue'}),
+                         (charlie {name: 'Charlie', age: 53, eyes: 'green'}),
+                         (daniel {name: 'Daniel', age: 54, eyes: 'brown'}),
+                         (eskil {name: 'Eskil', age: 41, eyes: 'blue', array: ['one', 'two', 'three']}),
+                  
+                         (alice)-[:KNOWS]-&gt;(bob),
+                         (alice)-[:KNOWS]-&gt;(charlie),
+                         (bob)-[:KNOWS]-&gt;(daniel),
+                         (charlie)-[:KNOWS]-&gt;(daniel),
+                         (bob)-[:MARRIED]-&gt;(eskil)
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n)-[r]-&gt;()
+                     WHERE n.name = 'Alice'
+                     RETURN type(r)
+                     </strong></span></p>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

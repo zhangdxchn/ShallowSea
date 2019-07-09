@@ -1,0 +1,1218 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>3.3.13.&nbsp;SET - 3.3.&nbsp;Clauses</title>
+      <link rel="stylesheet" type="text/css" href="../../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../../javascript/colorize.js" type="text/javascript"></script><script src="../../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="The SET clause is used to update labels on nodes and properties on nodes and relationships."></meta>
+      <link rel="prev" href="../delete/index.html" title="3.3.12.&nbsp;DELETE"></link>
+      <link rel="next" href="../remove/index.html" title="3.3.14.&nbsp;REMOVE"></link>
+      <link rel="shortcut icon" href="../../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../../index.html" id="logo"><img src="../../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../delete/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>DELETE</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.3.13.&nbsp;SET</p></span><span class="nav-next"><a accesskey="n" href="../remove/index.html">REMOVE<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="query-set">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title"><a class="anchor" href="index.html#query-set"></a>3.3.13.&nbsp;SET
+                  </h3>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>The <code class="literal">SET</code> clause is used to update labels on nodes and properties on nodes and relationships.
+            </p>
+         </div>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem"><a class="link" href="index.html#query-set-introduction" title="3.3.13.1.&nbsp;Introduction">Introduction</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-set-a-property" title="3.3.13.2.&nbsp;Set a property">Set a property</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-update-a-property" title="3.3.13.3.&nbsp;Update a property">Update a property</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-remove-a-property" title="3.3.13.4.&nbsp;Remove a property">Remove a property</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-copying-properties-between-nodes-and-relationships" title="3.3.13.5.&nbsp;Copy properties between nodes and relationships">Copy properties between nodes and relationships</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-replace-properties-using-map" title="3.3.13.6.&nbsp;Replace all properties using a map and =">Replace all properties using a map and <code class="literal">=</code></a></li>
+               <li class="listitem"><a class="link" href="index.html#set-remove-properties-using-empty-map" title="3.3.13.7.&nbsp;Remove all properties using an empty map and =">Remove all properties using an empty map and <code class="literal">=</code></a></li>
+               <li class="listitem"><a class="link" href="index.html#set-setting-properties-using-map" title="3.3.13.8.&nbsp;Mutate specific properties using a map and +=">Mutate specific properties using a map and <code class="literal">+=</code></a></li>
+               <li class="listitem"><a class="link" href="index.html#set-set-multiple-properties-using-one-set-clause" title="3.3.13.9.&nbsp;Set multiple properties using one SET clause">Set multiple properties using one <code class="literal">SET</code> clause</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-set-a-property-using-a-parameter" title="3.3.13.10.&nbsp;Set a property using a parameter">Set a property using a parameter</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-set-all-properties-using-a-parameter" title="3.3.13.11.&nbsp;Set all properties using a parameter">Set all properties using a parameter</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-set-a-label-on-a-node" title="3.3.13.12.&nbsp;Set a label on a node">Set a label on a node</a></li>
+               <li class="listitem"><a class="link" href="index.html#set-set-multiple-labels-on-a-node" title="3.3.13.13.&nbsp;Set multiple labels on a node">Set multiple labels on a node</a></li>
+            </ul>
+         </div>
+         <section class="section" id="query-set-introduction">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#query-set-introduction"></a>3.3.13.1.&nbsp;Introduction
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">SET</code> can be used with a map&#8201;&#8212;&#8201;provided as a literal, a parameter, or a node or relationship&#8201;&#8212;&#8201;to set properties.
+            </p>
+            <div class="admonitionblock note">
+               <table>
+                  <tbody>
+                     <tr>
+                        <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                        <td class="content">
+                           <p>Setting labels on a node is an idempotent operation&#8201;&#8212;&#8201;nothing will occur if an attempt is made to set a label on a node that
+                              already has that label.
+                              The query statistics will state whether any updates actually took place.
+                           </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p>The examples use this graph as a starting point:</p>
+            <div class="figure" id="d0e22252">
+               <div class="figure-title">Figure&nbsp;3.17.&nbsp;Graph</div>
+               <div class="figure-contents">
+                  <div class="mediaobject"><img src="../../../images/SET-1.svg" alt="alt"></img></div>
+               </div>
+            </div>
+         </section>
+         <section class="section" id="set-set-a-property">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-set-a-property"></a>3.3.13.2.&nbsp;Set a property
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Use <code class="literal">SET</code> to set a property on a node or relationship:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET n.surname = 'Taylor'
+RETURN n.name, n.surname</code></pre><p>
+               
+            </p>
+            <p>The newly-changed node is returned by the query.</p>
+            <div class="table" id="d0e22279">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.173.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">n.surname</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Properties set: 1
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Andy"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Taylor"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET n.surname = 'Taylor'
+                     RETURN n.name, n.surname
+                     </strong></span></p>
+            <p>It is possible to set a property on a node or relationship using more complex expressions.
+               For instance, in contrast to specifying the node directly, the following query shows how to set a property for a node selected
+               by an expression:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET (
+CASE
+WHEN n.age = 36
+THEN n END ).worksIn = 'Malmo'
+RETURN n.name, n.worksIn</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e22326">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.174.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">n.worksIn</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Properties set: 1
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Andy"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Malmo"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET (CASE WHEN n.age = 36 THEN n END).worksIn = 'Malmo'
+                     RETURN n.name, n.worksIn
+                     </strong></span></p>
+            <p>No action will be taken if the node expression evaluates to <code class="literal">null</code>, as shown in this example:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET (
+CASE
+WHEN n.age = 55
+THEN n END ).worksIn = 'Malmo'
+RETURN n.name, n.worksIn</code></pre><p>
+               
+            </p>
+            <p>As no node matches the <code class="literal">CASE</code> expression, the expression returns a <code class="literal">null</code>.
+               As a consequence, no updates occur, and therefore no <code class="literal">worksIn</code> property is set.
+            </p>
+            <div class="table" id="d0e22387">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.175.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">n.worksIn</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Andy"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET (CASE WHEN n.age = 55 THEN n END).worksIn = 'Malmo'
+                     RETURN n.name, n.worksIn
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-update-a-property">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-update-a-property"></a>3.3.13.3.&nbsp;Update a property
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">SET</code> can be used to update a property on a node or relationship.
+               This query forces a change of type in the <code class="literal">age</code> property:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET n.age = toString(n.age)
+RETURN n.name, n.age</code></pre><p>
+               
+            </p>
+            <p>The <code class="literal">age</code> property has been converted to the string <code class="literal">'36'</code>.
+            </p>
+            <div class="table" id="d0e22448">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.176.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">n.age</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Properties set: 1
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Andy"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"36"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET n.age = toString(n.age)
+                     RETURN n.name, n.age
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-remove-a-property">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-remove-a-property"></a>3.3.13.4.&nbsp;Remove a property
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Although <code class="literal"><a class="link" href="../remove/index.html" title="3.3.14.&nbsp;REMOVE">REMOVE</a></code> is normally used to remove a property, it&#8217;s sometimes convenient to do it using the <code class="literal">SET</code> command.
+               A case in point is if the property is provided by a parameter.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET n.name = NULL RETURN n.name, n.age</code></pre><p>
+               
+            </p>
+            <p>The <code class="literal">name</code> property is now missing.
+            </p>
+            <div class="table" id="d0e22510">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.177.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">n.age</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Properties set: 1
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">36</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET n.name = null
+                     RETURN n.name, n.age
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-copying-properties-between-nodes-and-relationships">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-copying-properties-between-nodes-and-relationships"></a>3.3.13.5.&nbsp;Copy properties between nodes and relationships
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><code class="literal">SET</code> can be used to copy all properties from one node or relationship to another.
+               This will remove <span class="emphasis"><em>all</em></span> other properties on the node or relationship being copied to.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (at { name: 'Andy' }),(pn { name: 'Peter' })
+SET at = pn
+RETURN at.name, at.age, at.hungry, pn.name, pn.age</code></pre><p>
+               
+            </p>
+            <p>The <span class="strong"><strong>'Andy'</strong></span> node has had all its properties replaced by the properties of the <span class="strong"><strong>'Peter'</strong></span> node.
+            </p>
+            <div class="table" id="d0e22573">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.178.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                     <col class="col_3"></col>
+                     <col class="col_4"></col>
+                     <col class="col_5"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">at.name</th>
+                        <th style="text-align: left; vertical-align: top; ">at.age</th>
+                        <th style="text-align: left; vertical-align: top; ">at.hungry</th>
+                        <th style="text-align: left; vertical-align: top; ">pn.name</th>
+                        <th style="text-align: left; vertical-align: top; ">pn.age</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="5">
+                           <p>1 row
+                              Properties set: 3
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Peter"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">34</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Peter"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">34</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (at {name: 'Andy'}), (pn {name: 'Peter'})
+                     SET at = pn
+                     RETURN at.name, at.age, at.hungry, pn.name, pn.age
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-replace-properties-using-map">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-replace-properties-using-map"></a>3.3.13.6.&nbsp;Replace all properties using a map and <code class="literal">=</code></h4>
+                  </div>
+               </div>
+            </div>
+            <p>The property replacement operator <code class="literal">=</code> can be used with <code class="literal">SET</code> to replace all existing properties on a node or relationship with those provided by a map:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (p { name: 'Peter' })
+SET p = { name: 'Peter Smith', position: 'Entrepreneur' }
+RETURN p.name, p.age, p.position</code></pre><p>
+               
+            </p>
+            <p>This query updated the <code class="literal">name</code> property from <code class="literal">Peter</code> to <code class="literal">Peter Smith</code>, deleted the <code class="literal">age</code> property, and added the <code class="literal">position</code> property to the <span class="strong"><strong>'Peter'</strong></span> node.
+            </p>
+            <div class="table" id="d0e22672">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.179.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                     <col class="col_3"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">p.name</th>
+                        <th style="text-align: left; vertical-align: top; ">p.age</th>
+                        <th style="text-align: left; vertical-align: top; ">p.position</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="3">
+                           <p>1 row
+                              Properties set: 3
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Peter Smith"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Entrepreneur"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (p {name: 'Peter'})
+                     SET p = {name: 'Peter Smith', position: 'Entrepreneur'}
+                     RETURN p.name, p.age, p.position
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-remove-properties-using-empty-map">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-remove-properties-using-empty-map"></a>3.3.13.7.&nbsp;Remove all properties using an empty map and <code class="literal">=</code></h4>
+                  </div>
+               </div>
+            </div>
+            <p>All existing properties can be removed from a node or relationship by using <code class="literal">SET</code> with <code class="literal">=</code> and an empty map as the right operand:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (p { name: 'Peter' })
+SET p = { }
+RETURN p.name, p.age</code></pre><p>
+               
+            </p>
+            <p>This query removed all the existing properties&#8201;&#8212;&#8201;namely, <code class="literal">name</code> and <code class="literal">age</code>&#8201;&#8212;&#8201;from the <span class="strong"><strong>'Peter'</strong></span> node.
+            </p>
+            <div class="table" id="d0e22748">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.180.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">p.name</th>
+                        <th style="text-align: left; vertical-align: top; ">p.age</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Properties set: 2
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (p {name: 'Peter'})
+                     SET p = {}
+                     RETURN p.name, p.age
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-setting-properties-using-map">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-setting-properties-using-map"></a>3.3.13.8.&nbsp;Mutate specific properties using a map and <code class="literal">+=</code></h4>
+                  </div>
+               </div>
+            </div>
+            <p>The property mutation operator <code class="literal">+=</code> can be used with <code class="literal">SET</code> to mutate properties from a map in a fine-grained fashion:
+            </p>
+            <div class="itemizedlist">
+               <ul class="itemizedlist" style="list-style-type: disc; ">
+                  <li class="listitem">Any properties in the map that are not on the node or relationship will be <span class="emphasis"><em>added</em></span>.
+                  </li>
+                  <li class="listitem">Any properties not in the map that are on the node or relationship will be left as is.</li>
+                  <li class="listitem">Any properties that are in both the map and the node or relationship will be <span class="emphasis"><em>replaced</em></span> in the node or relationship.
+                     However, if any property in the map is <code class="literal">null</code>, it will be <span class="emphasis"><em>removed</em></span> from the node or relationship.
+                  </li>
+               </ul>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (p { name: 'Peter' })
+SET p += { age: 38, hungry: TRUE , position: 'Entrepreneur' }
+RETURN p.name, p.age, p.hungry, p.position</code></pre><p>
+               
+            </p>
+            <p>This query left the <code class="literal">name</code> property unchanged, updated the <code class="literal">age</code> property from <code class="literal">34</code> to <code class="literal">38</code>, and added the <code class="literal">hungry</code> and <code class="literal">position</code> properties to the <span class="strong"><strong>'Peter'</strong></span> node.
+            </p>
+            <div class="table" id="d0e22851">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.181.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                     <col class="col_3"></col>
+                     <col class="col_4"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">p.name</th>
+                        <th style="text-align: left; vertical-align: top; ">p.age</th>
+                        <th style="text-align: left; vertical-align: top; ">p.hungry</th>
+                        <th style="text-align: left; vertical-align: top; ">p.position</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="4">
+                           <p>1 row
+                              Properties set: 3
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Peter"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">38</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">true</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Entrepreneur"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (p {name: 'Peter'})
+                     SET p += {age: 38, hungry: true, position: 'Entrepreneur'}
+                     RETURN p.name, p.age, p.hungry, p.position
+                     </strong></span></p>
+            <p><a class="link" href="index.html#set-remove-properties-using-empty-map" title="3.3.13.7.&nbsp;Remove all properties using an empty map and =">In contrast to the property replacement operator <code class="literal">=</code></a>, providing an empty map as the right operand to <code class="literal">+=</code> will not remove any existing properties from a node or relationship.
+               In line with the semantics detailed above, passing in an empty map with <code class="literal">+=</code> will have no effect:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (p { name: 'Peter' })
+SET p += { }
+RETURN p.name, p.age</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e22922">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.182.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">p.name</th>
+                        <th style="text-align: left; vertical-align: top; ">p.age</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Peter"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">34</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (p {name: 'Peter'})
+                     SET p += {}
+                     RETURN p.name, p.age
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-set-multiple-properties-using-one-set-clause">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-set-multiple-properties-using-one-set-clause"></a>3.3.13.9.&nbsp;Set multiple properties using one <code class="literal">SET</code> clause
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Set multiple properties at once by separating them with a comma:</p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET n.position = 'Developer', n.surname = 'Taylor'</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e22973">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.183.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>0 rows
+                              Properties set: 2
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">(empty result)</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET n.position = 'Developer', n.surname = 'Taylor'
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-set-a-property-using-a-parameter">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-set-a-property-using-a-parameter"></a>3.3.13.10.&nbsp;Set a property using a parameter
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Use a parameter to set the value of a property:</p>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "surname" : "Taylor"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET n.surname = $surname
+RETURN n.name, n.surname</code></pre><p>
+               
+            </p>
+            <p>A <code class="literal">surname</code> property has been added to the <span class="strong"><strong>'Andy'</strong></span> node.
+            </p>
+            <div class="table" id="d0e23028">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.184.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">n.surname</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Properties set: 1
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Andy"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Taylor"</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET n.surname = $surname
+                     RETURN n.name, n.surname
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-set-all-properties-using-a-parameter">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-set-all-properties-using-a-parameter"></a>3.3.13.11.&nbsp;Set all properties using a parameter
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>This will replace all existing properties on the node with the new set provided by the parameter.</p>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "props" : {
+    "name" : "Andy",
+    "position" : "Developer"
+  }
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Andy' })
+SET n = $props
+RETURN n.name, n.position, n.age, n.hungry</code></pre><p>
+               
+            </p>
+            <p>The <span class="strong"><strong>'Andy'</strong></span> node has had all its properties replaced by the properties in the <code class="literal">props</code> parameter.
+            </p>
+            <div class="table" id="d0e23094">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.185.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                     <col class="col_3"></col>
+                     <col class="col_4"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">n.position</th>
+                        <th style="text-align: left; vertical-align: top; ">n.age</th>
+                        <th style="text-align: left; vertical-align: top; ">n.hungry</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="4">
+                           <p>1 row
+                              Properties set: 4
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Andy"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Developer"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Andy'})
+                     SET n = $props
+                     RETURN n.name, n.position, n.age, n.hungry
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-set-a-label-on-a-node">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-set-a-label-on-a-node"></a>3.3.13.12.&nbsp;Set a label on a node
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Use <code class="literal">SET</code> to set a label on a node:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'Stefan' })
+SET n:German
+RETURN n.name, labels(n) AS labels</code></pre><p>
+               
+            </p>
+            <p>The newly-labeled node is returned by the query.</p>
+            <div class="table" id="d0e23163">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.186.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">labels</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Labels added: 1
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"Stefan"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">["German"]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'Stefan'})
+                     SET n:German
+                     RETURN n.name, labels(n) AS labels
+                     </strong></span></p>
+         </section>
+         <section class="section" id="set-set-multiple-labels-on-a-node">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#set-set-multiple-labels-on-a-node"></a>3.3.13.13.&nbsp;Set multiple labels on a node
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Set multiple labels on a node with <code class="literal">SET</code> and use <code class="literal">:</code> to separate the different labels:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n { name: 'George' })
+SET n:Swedish:Bossman
+RETURN n.name, labels(n) AS labels</code></pre><p>
+               
+            </p>
+            <p>The newly-labeled node is returned by the query.</p>
+            <div class="table" id="d0e23221">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.187.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">n.name</th>
+                        <th style="text-align: left; vertical-align: top; ">labels</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; " colspan="2">
+                           <p>1 row
+                              Labels added: 2
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">"George"</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">["Swedish","Bossman"]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Swedish {name: 'Andy', age: 36, hungry: true}),
+                                  (b {name: 'Stefan'}),
+                                  (c {name: 'Peter', age: 34}),
+                                  (d {name: 'George'}),
+                  
+                                  (a)-[:KNOWS]-&gt;(c),
+                                  (b)-[:KNOWS]-&gt;(a),
+                                  (d)-[:KNOWS]-&gt;(c)
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (n {name: 'George'})
+                     SET n:Swedish:Bossman
+                     RETURN n.name, labels(n) AS labels
+                     </strong></span></p>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

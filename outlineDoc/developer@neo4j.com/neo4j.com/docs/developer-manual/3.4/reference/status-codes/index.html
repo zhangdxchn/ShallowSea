@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>A.1.&nbsp;Neo4j Status Codes - Appendix&nbsp;A.&nbsp;Reference</title>
+      <link rel="stylesheet" type="text/css" href="../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../javascript/colorize.js" type="text/javascript"></script><script src="../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <link rel="prev" href="../index.html" title="Appendix&nbsp;A.&nbsp;Reference"></link>
+      <link rel="next" href="../../terminology/index.html" title="Appendix&nbsp;B.&nbsp;Terminology"></link>
+      <link rel="shortcut icon" href="../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../index.html" id="logo"><img src="../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Reference</a></span><span class="nav-current">
+               <p class="nav-title hidden">A.1.&nbsp;Neo4j Status Codes</p></span><span class="nav-next"><a accesskey="n" href="../../terminology/index.html">Terminology<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="status-codes">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a class="anchor" href="index.html#status-codes"></a>A.1.&nbsp;Neo4j Status Codes
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <p>The transactional endpoint may in any response include zero or more status codes, indicating issues or information for
+            the client. Each status code follows the same format: "Neo.[Classification].[Category].[Title]". The fact
+            that a status code is returned by the server does always mean there is a fatal error. Status codes can also indicate
+            transient problems that may go away if you retry the request.
+         </p>
+         <p>What the effect of the status code is can be determined by its classification.</p>
+         <div class="admonitionblock note">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                     <td class="content">
+                        <p>This is not the same thing as HTTP status codes. Neo4j Status Codes are returned in the response body, at the very end
+                           of the response.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <section class="section" id="_classifications">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#_classifications"></a>A.1.1.&nbsp;Classifications
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <div class="informaltable">
+               <div class="table" id="d0e68514">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                        <col class="col_3"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Classification</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                           <th style="text-align: left; vertical-align: top; ">Effect on transaction</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">ClientError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The Client sent a bad request - changing the request might yield a successful outcome.</p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Rollback</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">ClientNotification</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>There are notifications about the request sent by the client.</p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>None</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">TransientError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database cannot service the request right now, retrying later might yield a successful outcome.</p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Rollback</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">DatabaseError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database failed to service the request.</p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Rollback</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </section>
+         <section class="section" id="_status_codes">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#_status_codes"></a>A.1.2.&nbsp;Status codes
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>This is a complete list of all status codes Neo4j may return, and what they mean.</p>
+            <div class="informaltable">
+               <div class="table" id="d0e68577">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Status Code</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Cluster.NotALeader</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request cannot be processed by this server. Write requests can only be processed by the leader.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.General.ForbiddenOnReadOnlyDatabase</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>This is a read only database, writing or modifying the database is not allowed.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.General.InvalidArguments</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request contained fields that were empty or are not allowed.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.LegacyIndex.LegacyIndexNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request (directly or indirectly) referred to an explicit index that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Procedure.ProcedureCallFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Failed to invoke a procedure. See the detailed error description for exact cause.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Procedure.ProcedureNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A request referred to a procedure that is not registered with this database instance. If you are deploying custom procedures
+                                 in a cluster setup, ensure all instances in the cluster have the procedure jar file deployed.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Procedure.ProcedureRegistrationFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database failed to register a procedure, refer to the associated error message for details.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Procedure.ProcedureTimedOut</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The procedure has not completed within the specified timeout. You may want to retry with a longer timeout.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Procedure.TypeError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A procedure is using or receiving a value of an invalid type.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Request.Invalid</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The client provided an invalid request.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Request.InvalidFormat</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The client provided a request that was missing required fields, or had values that are not allowed.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Request.InvalidUsage</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The client made a request but did not consume outgoing buffers in a timely fashion.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Request.TransactionRequired</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request cannot be performed outside of a transaction, and there is no transaction present to use. Wrap your request in
+                                 a transaction and retry.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.ConstraintAlreadyExists</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Unable to perform operation because it would clash with a pre-existing constraint.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.ConstraintNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request (directly or indirectly) referred to a constraint that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.ConstraintValidationFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A constraint imposed by the database was violated.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.ConstraintVerificationFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Unable to create constraint because data that exists in the database violates it.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.ForbiddenOnConstraintIndex</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A requested operation can not be performed on the specified index because the index is part of a constraint. If you want to
+                                 drop the index, for instance, you must drop the constraint.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.IndexAlreadyExists</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Unable to perform operation because it would clash with a pre-existing index.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.IndexNotApplicable</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request did not contain the properties required by the index.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.IndexNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request (directly or indirectly) referred to an index that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.RepeatedPropertyInCompositeSchema</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Unable to create composite index or constraint because a property was specified in several positions.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Schema.TokenNameError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A token name, such as a label, relationship type or property key, used is not valid. Tokens cannot be empty strings and cannot
+                                 be null.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Security.AuthenticationRateLimit</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The client has provided incorrect authentication details too many times in a row.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Security.AuthorizationExpired</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The stored authorization info has expired. Please reconnect.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Security.CredentialsExpired</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The credentials have expired and need to be updated.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Security.EncryptionRequired</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A TLS encrypted connection is required.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Security.Forbidden</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An attempt was made to perform an unauthorized action.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Security.Unauthorized</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The client is unauthorized due to authentication failure.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.ArgumentError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement is attempting to perform operations using invalid arguments</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.ArithmeticError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Invalid use of arithmetic, such as dividing by zero.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.ConstraintVerificationFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A constraint imposed by the statement is violated by the data in the database.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.EntityNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement refers to a non-existent entity.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.ExternalResourceFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Access to an external resource failed</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.LabelNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement is referring to a label that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.ParameterMissing</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement refers to a parameter that was not provided in the request.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.PropertyNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement refers to a non-existent property.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.SemanticError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement is syntactically valid, but expresses something that the database cannot do.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.SyntaxError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement contains invalid or unsupported syntax.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Statement.TypeError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The statement is attempting to perform operations on values with types that are not supported by the operation.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.ForbiddenDueToTransactionType</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The transaction is of the wrong type to service the request. For instance, a transaction that has had schema modifications
+                                 performed in it cannot be used to subsequently perform data operations, and vice versa.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.InvalidBookmark</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Supplied bookmark cannot be interpreted. You should only supply a bookmark previously that was previously generated by Neo4j.
+                                 Maybe you have generated your own bookmark, or modified a bookmark since it was generated by Neo4j.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.TransactionAccessedConcurrently</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>There were concurrent requests accessing the same transaction, which is not allowed.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.TransactionHookFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Transaction hook failure.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.TransactionMarkedAsFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Transaction was marked as both successful and failed. Failure takes precedence and so this transaction was rolled back although
+                                 it may have looked like it was going to be committed
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.TransactionNotFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request referred to a transaction that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.TransactionTimedOut</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The transaction has not completed within the specified timeout. You may want to retry with a longer timeout.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientError.Transaction.TransactionValidationFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Transaction changes did not pass validation checks</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Procedure.ProcedureWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The query used a procedure that generated a warning.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.CartesianProductWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>This query builds a cartesian product between disconnected patterns.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.CreateUniqueUnavailableWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>CREATE UNIQUE is not available in the current CYPHER version, the query has been run by an older CYPHER version.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.DynamicPropertyWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Queries using dynamic properties will use neither index seeks nor index scans for those properties</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.EagerOperatorWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main
+                                 memory before proceeding
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.ExhaustiveShortestPathWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to
+                                 find the shortest path. Hence an exhaustive enumeration of all paths might be used in order to find the requested shortest
+                                 path.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.ExperimentalFeature</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>This feature is experimental and should not be used in production systems.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.FeatureDeprecationWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>This feature is deprecated and will be removed in future versions.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database was unable to plan a hinted join.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.JoinHintUnsupportedWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Queries with join hints are not supported by the RULE planner.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.NoApplicableIndexWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Adding a schema index may speed up this query.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.PlannerUnavailableWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The RULE planner is not available in the current CYPHER version, the query has been run by an older CYPHER version.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.PlannerUnsupportedWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>This query is not supported by the COST planner.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.RuntimeUnsupportedWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>This query is not supported by the chosen runtime.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.SuboptimalIndexForWildcardQuery</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Index cannot execute wildcard query efficiently</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.UnboundedVariableLengthPatternWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The provided pattern is unbounded, consider adding an upper limit to the number of node hops.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.UnknownLabelWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The provided label is not in the database.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.UnknownPropertyKeyWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The provided property key is not in the database</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The provided relationship type is not in the database.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.General.IndexCorruptionDetected</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request (directly or indirectly) referred to an index that is in a failed state. The index needs to be dropped and recreated
+                                 manually.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.General.SchemaCorruptionDetected</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>A malformed schema rule was encountered. Please contact your support representative.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.General.StorageDamageDetected</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Expected set of files not found on disk. Please restore from backup.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.General.UnknownError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An unknown error occurred.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.ConstraintCreationFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Creating a requested constraint failed.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.ConstraintDropFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database failed to drop a requested constraint.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.IndexCreationFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Failed to create an index.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.IndexDropFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database failed to drop a requested index.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.LabelAccessFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request accessed a label that did not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.LabelLimitReached</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The maximum number of labels supported has been reached, no more labels can be created.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.PropertyKeyAccessFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request accessed a property that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.RelationshipTypeAccessFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request accessed a relationship type that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.SchemaRuleAccessFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request referred to a schema rule that does not exist.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Schema.SchemaRuleDuplicateFound</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The request referred to a schema rule that is defined multiple times.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Statement.ExecutionFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database was unable to execute the statement.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Transaction.TransactionCommitFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database was unable to commit the transaction.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Transaction.TransactionLogError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database was unable to write transaction to log.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Transaction.TransactionRollbackFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database was unable to roll back the transaction.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.DatabaseError.Transaction.TransactionStartFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database was unable to start the transaction.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Cluster.NoLeaderAvailable</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>No leader available at the moment. Retrying your request at a later time may succeed.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Cluster.ReplicationFailure</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Replication failure.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.General.DatabaseUnavailable</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database is not currently available to serve your request, refer to the database logs for more details. Retrying your
+                                 request at a later time may succeed.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.General.OutOfMemoryError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>There is not enough memory to perform the current task. Please try increasing 'dbms.memory.heap.max_size' in the neo4j configuration
+                                 (normally in 'conf/neo4j.conf' or, if you you are using Neo4j Desktop, found through the user interface) or if you are running
+                                 an embedded installation increase the heap by using '-Xmx' command line flag, and then restart the database.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.General.StackOverFlowError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>There is not enough stack size to perform the current task. This is generally considered to be a database error, so please
+                                 contact Neo4j support. You could try increasing the stack size: for example to set the stack size to 2M, add `dbms.jvm.additional=-Xss2M'
+                                 to in the neo4j configuration (normally in 'conf/neo4j.conf' or, if you are using Neo4j Desktop, found through the user interface)
+                                 or if you are running an embedded installation just add -Xss2M as command line flag.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Network.CommunicationError</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An unknown network failure occurred, a retry may resolve the issue.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Request.NoThreadsAvailable</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>There are no available threads to serve this request at the moment. You can retry at a later time or consider increasing max
+                                 thread pool size for bolt connector(s).
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Schema.SchemaModifiedConcurrently</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The database schema was modified while this transaction was running, the transaction should be retried.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Security.AuthProviderFailed</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An auth provider request failed.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Security.AuthProviderTimeout</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>An auth provider request timed out.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Security.ModifiedConcurrently</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The user was modified concurrently to this request.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.ConstraintsChanged</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Database constraints changed since the start of this transaction</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.DeadlockDetected</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>This transaction, and at least one more transaction, has acquired locks in a way that it will wait indefinitely, and the database
+                                 has aborted it. Retrying this transaction will most likely be successful.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.InstanceStateChanged</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Transactions rely on assumptions around the state of the Neo4j instance they execute on. For instance, transactions in a cluster
+                                 may expect that they are executing on an instance that can perform writes. However, instances may change state while the transaction
+                                 is running. This causes assumptions the instance has made about how to execute the transaction to be violated - meaning the
+                                 transaction must be rolled back. If you see this error, you should retry your operation in a new transaction.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.Interrupted</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Interrupted while waiting.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.LockAcquisitionTimeout</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Unable to acquire lock within configured timeout.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.LockClientStopped</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The transaction has been terminated, so no more locks can be acquired. This can occur because the transaction ran longer than
+                                 the configured transaction timeout, or because a human operator manually terminated the transaction, or because the database
+                                 is shutting down.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.LockSessionExpired</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>The lock session under which this transaction was started is no longer valid.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.Outdated</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Transaction has seen state which has been invalidated by applied updates while transaction was active. Transaction may succeed
+                                 if retried.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Neo.TransientError.Transaction.Terminated</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Explicitly terminated by the user.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

@@ -1,0 +1,879 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>3.2.11.&nbsp;Lists - 3.2.&nbsp;Syntax</title>
+      <link rel="stylesheet" type="text/css" href="../../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../../javascript/colorize.js" type="text/javascript"></script><script src="../../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="Cypher has comprehensive support for lists."></meta>
+      <link rel="prev" href="../temporal/index.html" title="3.2.10.&nbsp;Temporal (Date/Time) values"></link>
+      <link rel="next" href="../maps/index.html" title="3.2.12.&nbsp;Maps"></link>
+      <link rel="shortcut icon" href="../../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../../index.html" id="logo"><img src="../../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../temporal/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Temporal (Date/Time) values</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.2.11.&nbsp;Lists</p></span><span class="nav-next"><a accesskey="n" href="../maps/index.html">Maps<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="cypher-lists">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title"><a class="anchor" href="index.html#cypher-lists"></a>3.2.11.&nbsp;Lists
+                  </h3>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>Cypher has comprehensive support for lists.</p>
+         </div>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem"><a class="link" href="index.html#cypher-lists-general" title="3.2.11.1.&nbsp;Lists in general">Lists in general</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-list-comprehension" title="3.2.11.2.&nbsp;List comprehension">List comprehension</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-pattern-comprehension" title="3.2.11.3.&nbsp;Pattern comprehension">Pattern comprehension</a></li>
+            </ul>
+         </div>
+         <div class="admonitionblock note">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                     <td class="content">
+                        <p>Information regarding operators such as list concatenation (<code class="literal">+</code>), element existence checking (<code class="literal">IN</code>) and access (<code class="literal">[]</code>) can be found <a class="link" href="../operators/index.html#query-operators-list" title="3.2.7.10.&nbsp;List operators">here</a>.
+                           The behavior of the <code class="literal">IN</code> and <code class="literal">[]</code> operators with respect to <code class="literal">null</code> is detailed <a class="link" href="../working-with-null/index.html" title="3.2.14.&nbsp;Working with null">here</a>.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <section class="section" id="cypher-lists-general">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-lists-general"></a>3.2.11.1.&nbsp;Lists in general
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>A literal list is created by using brackets and separating the elements in the list with commas.</p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] AS list</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12417">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.55.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">list</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[0,1,2,3,4,5,6,7,8,9]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] AS list
+                     </strong></span></p>
+            <p>In our examples, we&#8217;ll use the <a class="link" href="../../functions/list/index.html#functions-range" title="3.4.4.6.&nbsp;range()"><code class="literal">range</code></a> function.
+               It gives you a list containing all numbers between given start and end numbers.
+               Range is inclusive in both ends.
+            </p>
+            <p>To access individual elements in the list, we use the square brackets again.
+               This will extract from the start index and up to but not including the end index.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[3]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12461">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.56.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[3]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">3</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[3]
+                     </strong></span></p>
+            <p>You can also use negative numbers, to start from the end of the list instead.</p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[-3]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12499">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.57.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[-3]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">8</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[-3]
+                     </strong></span></p>
+            <p>Finally, you can use ranges inside the brackets to return ranges of the list.</p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[0..3]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12537">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.58.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[0..3]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[0,1,2]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[0..3]
+                     </strong></span></p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[0..-5]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12573">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.59.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[0..-5]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[0,1,2,3,4,5]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[0..-5]
+                     </strong></span></p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[-5..]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12609">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.60.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[-5..]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[6,7,8,9,10]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[-5..]
+                     </strong></span></p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[..4]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12645">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.61.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[..4]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[0,1,2,3]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[..4]
+                     </strong></span></p>
+            <div class="admonitionblock note">
+               <table>
+                  <tbody>
+                     <tr>
+                        <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                        <td class="content">
+                           <p>Out-of-bound slices are simply truncated, but out-of-bound single elements return <code class="literal">null</code>.
+                           </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[15]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12687">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.62.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[15]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">&lt;null&gt;</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[15]
+                     </strong></span></p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN range(0, 10)[5..15]</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12723">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.63.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">range(0, 10)[5..15]</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[5,6,7,8,9,10]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN range(0, 10)[5..15]
+                     </strong></span></p>
+            <p>You can get the <a class="link" href="../../functions/scalar/index.html#functions-size" title="3.4.2.9.&nbsp;size()"><code class="literal">size</code></a> of a list as follows:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN size(range(0, 10)[0..3])</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12765">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.64.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">size(range(0, 10)[0..3])</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">3</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN size(range(0, 10)[0..3])
+                     </strong></span></p>
+         </section>
+         <section class="section" id="cypher-list-comprehension">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-list-comprehension"></a>3.2.11.2.&nbsp;List comprehension
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>List comprehension is a syntactic construct available in Cypher for creating a list based on existing lists.
+               It follows the form of the mathematical set-builder notation (set comprehension) instead of the use of map and filter functions.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN [x IN range(0,10) WHERE x % 2 = 0 | x^3] AS result</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12806">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.65.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">result</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[0.0,8.0,64.0,216.0,512.0,1000.0]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN [x IN range(0,10) WHERE x % 2 = 0 | x^3 ] AS result
+                     </strong></span></p>
+            <p>Either the <code class="literal">WHERE</code> part, or the expression, can be omitted, if you only want to filter or map respectively.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN [x IN range(0,10) WHERE x % 2 = 0] AS result</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12847">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.66.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">result</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[0,2,4,6,8,10]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN [x IN range(0,10) WHERE x % 2 = 0 ] AS result
+                     </strong></span></p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">RETURN [x IN range(0,10)| x^3] AS result</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12883">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.67.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">result</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[0.0,1.0,8.0,27.0,64.0,125.0,216.0,343.0,512.0,729.0,1000.0]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     RETURN [x IN range(0,10) | x^3 ] AS result
+                     </strong></span></p>
+         </section>
+         <section class="section" id="cypher-pattern-comprehension">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-pattern-comprehension"></a>3.2.11.3.&nbsp;Pattern comprehension
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Pattern comprehension is a syntactic construct available in Cypher for creating a list based on matchings of a pattern.
+               A pattern comprehension will match the specified pattern just like a normal <code class="literal">MATCH</code> clause, with predicates just
+               like a normal <code class="literal">WHERE</code> clause, but will yield a custom projection as specified.
+            </p>
+            <p>The following graph is used for the example below:</p>
+            <div class="figure" id="d0e12924">
+               <div class="figure-title">Figure&nbsp;3.4.&nbsp;Graph</div>
+               <div class="figure-contents">
+                  <div class="mediaobject"><img src="../../../images/Lists-1.svg" alt="alt"></img></div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a:Person { name: 'Charlie Sheen' })
+RETURN [(a)--&gt;(b) WHERE b:Movie | b.year] AS years</code></pre><p>
+               
+            </p>
+            <div class="table" id="d0e12941">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.68.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">years</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row</p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">[1979,1984,1987]</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (charlie:Person {name: 'Charlie Sheen',  realName: 'Carlos Irwin Est&eacute;vez'}),
+                  (martin:Person {name: 'Martin Sheen'}),
+                  (wallstreet:Movie {title: 'Wall Street', year: 1987}),
+                  (reddawn:Movie {title: 'Red Dawn', year: 1984}),
+                  (apocalypsenow:Movie {title: 'Apocalypse Now', year: 1979}),
+                  
+                  (charlie)-[:ACTED_IN]-&gt;(wallstreet),
+                  (charlie)-[:ACTED_IN]-&gt;(reddawn),
+                  (charlie)-[:ACTED_IN]-&gt;(apocalypsenow),
+                  (martin)-[:ACTED_IN]-&gt;(wallstreet),
+                  (martin)-[:ACTED_IN]-&gt;(apocalypsenow)
+                  
+                  
+                  
+                  </span><span class="command"><strong>
+                     MATCH (a:Person {name: 'Charlie Sheen'})
+                     RETURN [(a)--&gt;(b) WHERE b:Movie | b.year] AS years
+                     </strong></span></p>
+            <p>The whole predicate, including the <code class="literal">WHERE</code> keyword, is optional and may be omitted.
+            </p>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

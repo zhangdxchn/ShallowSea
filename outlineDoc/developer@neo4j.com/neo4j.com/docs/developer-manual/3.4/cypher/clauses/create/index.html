@@ -1,0 +1,794 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>3.3.11.&nbsp;CREATE - 3.3.&nbsp;Clauses</title>
+      <link rel="stylesheet" type="text/css" href="../../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../../javascript/colorize.js" type="text/javascript"></script><script src="../../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="The CREATE clause is used to create nodes and relationships."></meta>
+      <link rel="prev" href="../limit/index.html" title="3.3.10.&nbsp;LIMIT"></link>
+      <link rel="next" href="../delete/index.html" title="3.3.12.&nbsp;DELETE"></link>
+      <link rel="shortcut icon" href="../../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../../index.html" id="logo"><img src="../../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../limit/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>LIMIT</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.3.11.&nbsp;CREATE</p></span><span class="nav-next"><a accesskey="n" href="../delete/index.html">DELETE<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="query-create">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title"><a class="anchor" href="index.html#query-create"></a>3.3.11.&nbsp;CREATE
+                  </h3>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>The <code class="literal">CREATE</code> clause is used to create nodes and relationships.
+            </p>
+         </div>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem">
+                  <p class="simpara"><a class="link" href="index.html#create-nodes" title="3.3.11.1.&nbsp;Create nodes">Create nodes</a></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: circle; ">
+                        <li class="listitem"><a class="link" href="index.html#create-create-single-node" title="Create single node">Create single node</a></li>
+                        <li class="listitem"><a class="link" href="index.html#create-create-multiple-nodes" title="Create multiple nodes">Create multiple nodes</a></li>
+                        <li class="listitem"><a class="link" href="index.html#create-create-a-node-with-a-label" title="Create a node with a label">Create a node with a label</a></li>
+                        <li class="listitem"><a class="link" href="index.html#create-create-a-node-with-multiple-labels" title="Create a node with multiple labels">Create a node with multiple labels</a></li>
+                        <li class="listitem"><a class="link" href="index.html#create-create-node-and-add-labels-and-properties" title="Create node and add labels and properties">Create node and add labels and properties</a></li>
+                        <li class="listitem"><a class="link" href="index.html#create-return-created-node" title="Return created node">Return created node</a></li>
+                     </ul>
+                  </div>
+               </li>
+               <li class="listitem">
+                  <p class="simpara"><a class="link" href="index.html#create-relationships" title="3.3.11.2.&nbsp;Create relationships">Create relationships</a></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: circle; ">
+                        <li class="listitem"><a class="link" href="index.html#create-create-a-relationship-between-two-nodes" title="Create a relationship between two nodes">Create a relationship between two nodes</a></li>
+                        <li class="listitem"><a class="link" href="index.html#create-create-a-relationship-and-set-properties" title="Create a relationship and set properties">Create a relationship and set properties</a></li>
+                     </ul>
+                  </div>
+               </li>
+               <li class="listitem"><a class="link" href="index.html#create-create-a-full-path" title="3.3.11.3.&nbsp;Create a full path">Create a full path</a></li>
+               <li class="listitem">
+                  <p class="simpara"><a class="link" href="index.html#use-parameters-with-create" title="3.3.11.4.&nbsp;Use parameters with CREATE">Use parameters with <code class="literal">CREATE</code></a></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: circle; ">
+                        <li class="listitem"><a class="link" href="index.html#create-create-node-with-a-parameter-for-the-properties" title="Create node with a parameter for the properties">Create node with a parameter for the properties</a></li>
+                        <li class="listitem"><a class="link" href="index.html#create-create-multiple-nodes-with-a-parameter-for-their-properties" title="Create multiple nodes with a parameter for their properties">Create multiple nodes with a parameter for their properties</a></li>
+                     </ul>
+                  </div>
+               </li>
+            </ul>
+         </div>
+         <div class="admonitionblock tip">
+            <table>
+               <tbody>
+                  <tr>
+                     <td class="icon"><i class="fa icon-tip" title="tip"></i></td>
+                     <td class="content">
+                        <p>In the <code class="literal">CREATE</code> clause, patterns are used extensively.
+                           Read <a class="xref" href="../../syntax/patterns/index.html" title="3.2.9.&nbsp;Patterns">Section&nbsp;3.2.9, &#8220;Patterns&#8221;</a> for an introduction.
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <section class="section" id="create-nodes">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#create-nodes"></a>3.3.11.1.&nbsp;Create nodes
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <section class="section" id="create-create-single-node">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-single-node"></a>Create single node
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>Creating a single node is done by issuing the following query:</p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (n)</code></pre><p>
+                  
+               </p>
+               <p>Nothing is returned from this query, except the count of affected nodes.</p>
+               <div class="table" id="d0e21435">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.158.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>0 rows
+                                 Nodes created: 1
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">(empty result)</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        CREATE (n)
+                        </strong></span></p>
+            </section>
+            <section class="section" id="create-create-multiple-nodes">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-multiple-nodes"></a>Create multiple nodes
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>Creating multiple nodes is done by separating them with a comma.</p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (n),(m)</code></pre><p>
+                  
+               </p>
+               <div class="table" id="d0e21474">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.159.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>0 rows
+                                 Nodes created: 2
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">(empty result)</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        CREATE (n), (m)
+                        </strong></span></p>
+            </section>
+            <section class="section" id="create-create-a-node-with-a-label">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-a-node-with-a-label"></a>Create a node with a label
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>To add a label when creating a node, use the syntax below:</p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (n:Person)</code></pre><p>
+                  
+               </p>
+               <p>Nothing is returned from this query.</p>
+               <div class="table" id="d0e21515">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.160.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>0 rows
+                                 Nodes created: 1
+                                 Labels added: 1
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">(empty result)</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        CREATE (n:Person)
+                        </strong></span></p>
+            </section>
+            <section class="section" id="create-create-a-node-with-multiple-labels">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-a-node-with-multiple-labels"></a>Create a node with multiple labels
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>To add labels when creating a node, use the syntax below.
+                  In this case, we add two labels.
+               </p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (n:Person:Swedish)</code></pre><p>
+                  
+               </p>
+               <p>Nothing is returned from this query.</p>
+               <div class="table" id="d0e21558">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.161.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>0 rows
+                                 Nodes created: 1
+                                 Labels added: 2
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">(empty result)</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        CREATE (n:Person:Swedish)
+                        </strong></span></p>
+            </section>
+            <section class="section" id="create-create-node-and-add-labels-and-properties">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-node-and-add-labels-and-properties"></a>Create node and add labels and properties
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>When creating a new node with labels, you can add properties at the same time.</p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (n:Person { name: 'Andy', title: 'Developer' })</code></pre><p>
+                  
+               </p>
+               <p>Nothing is returned from this query.</p>
+               <div class="table" id="d0e21601">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.162.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>0 rows
+                                 Nodes created: 1
+                                 Properties set: 2
+                                 Labels added: 1
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">(empty result)</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        CREATE (n:Person {name: 'Andy', title: 'Developer'})
+                        </strong></span></p>
+            </section>
+            <section class="section" id="create-return-created-node">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-return-created-node"></a>Return created node
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>Creating a single node is done by issuing the following query:</p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (a { name: 'Andy' })
+RETURN a.name</code></pre><p>
+                  
+               </p>
+               <p>The newly-created node is returned.</p>
+               <div class="table" id="d0e21646">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.163.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">a.name</th>
+                        </tr>
+                     </thead>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>1 row
+                                 Nodes created: 1
+                                 Properties set: 1
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">"Andy"</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        CREATE (a {name: 'Andy'})
+                        RETURN a.name
+                        </strong></span></p>
+            </section>
+         </section>
+         <section class="section" id="create-relationships">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#create-relationships"></a>3.3.11.2.&nbsp;Create relationships
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <section class="section" id="create-create-a-relationship-between-two-nodes">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-a-relationship-between-two-nodes"></a>Create a relationship between two nodes
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>To create a relationship between two nodes, we first get the two nodes.
+                  Once the nodes are loaded, we simply create a relationship between them.
+               </p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a:Person),(b:Person)
+WHERE a.name = 'A' AND b.name = 'B'
+CREATE (a)-[r:RELTYPE]-&gt;(b)
+RETURN type(r)</code></pre><p>
+                  
+               </p>
+               <p>The created relationship is returned by the query.</p>
+               <div class="table" id="d0e21696">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.164.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">type(r)</th>
+                        </tr>
+                     </thead>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>1 row
+                                 Relationships created: 1
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">"RELTYPE"</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        MATCH (a:Person), (b:Person)
+                        WHERE a.name = 'A' AND b.name = 'B'
+                        CREATE (a)-[r:RELTYPE]-&gt;(b)
+                        RETURN type(r)
+                        </strong></span></p>
+            </section>
+            <section class="section" id="create-create-a-relationship-and-set-properties">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-a-relationship-and-set-properties"></a>Create a relationship and set properties
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>Setting properties on relationships is done in a similar manner to how it&#8217;s done when creating nodes.
+                  Note that the values can be any expression.
+               </p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (a:Person),(b:Person)
+WHERE a.name = 'A' AND b.name = 'B'
+CREATE (a)-[r:RELTYPE { name: a.name + '&lt;-&gt;' + b.name }]-&gt;(b)
+RETURN type(r), r.name</code></pre><p>
+                  
+               </p>
+               <p>The newly-created relationship is returned by the example query.</p>
+               <div class="table" id="d0e21741">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.165.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">type(r)</th>
+                           <th style="text-align: left; vertical-align: top; ">r.name</th>
+                        </tr>
+                     </thead>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; " colspan="2">
+                              <p>1 row
+                                 Relationships created: 1
+                                 Properties set: 1
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">"RELTYPE"</code></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">"A&lt;-&gt;B"</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        MATCH (a:Person), (b:Person)
+                        WHERE a.name = 'A' AND b.name = 'B'
+                        CREATE (a)-[r:RELTYPE {name: a.name + '&lt;-&gt;' + b.name}]-&gt;(b)
+                        RETURN type(r), r.name
+                        </strong></span></p>
+            </section>
+         </section>
+         <section class="section" id="create-create-a-full-path">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#create-create-a-full-path"></a>3.3.11.3.&nbsp;Create a full path
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>When you use <code class="literal">CREATE</code> and a pattern, all parts of the pattern that are not already in scope at this time will be created.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE p =(andy { name:'Andy' })-[:WORKS_AT]-&gt;(neo)&lt;-[:WORKS_AT]-(michael { name: 'Michael' })
+RETURN p</code></pre><p>
+               
+            </p>
+            <p>This query creates three nodes and two relationships in one go, assigns it to a path variable, and returns it.</p>
+            <div class="table" id="d0e21798">
+               <table class="table queryresult" summary="Result" border="1">
+                  <caption class="table-title">Table&nbsp;3.166.&nbsp;Result</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">p</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">
+                           <p>1 row
+                              Nodes created: 3
+                              Relationships created: 2
+                              Properties set: 2
+                           </p>
+                        </th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">(20)-[WORKS_AT,0]-&gt;(21)&lt;-[WORKS_AT,1]-(22)</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                  CREATE (a:Person {name: 'A'}),
+                                  (b:Person {name: 'B'})
+                  
+                  
+                  </span><span class="command"><strong>
+                     CREATE p = (andy {name:'Andy'})-[:WORKS_AT]-&gt;(neo)&lt;-[:WORKS_AT]-(michael {name: 'Michael'})
+                     RETURN p
+                     </strong></span></p>
+         </section>
+         <section class="section" id="use-parameters-with-create">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#use-parameters-with-create"></a>3.3.11.4.&nbsp;Use parameters with <code class="literal">CREATE</code></h4>
+                  </div>
+               </div>
+            </div>
+            <section class="section" id="create-create-node-with-a-parameter-for-the-properties">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-node-with-a-parameter-for-the-properties"></a>Create node with a parameter for the properties
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>You can also create a graph entity from a map.
+                  All the key/value pairs in the map will be set as properties on the created relationship or node.
+                  In this case we add a <code class="literal">Person</code> label to the node as well.
+               </p>
+               <p><span class="formalpara-title">Parameters.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "props" : {
+    "name" : "Andy",
+    "position" : "Developer"
+  }
+}</code></pre><p>
+                  
+               </p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE (n:Person $props)
+RETURN n</code></pre><p>
+                  
+               </p>
+               <div class="table" id="d0e21861">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.167.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">n</th>
+                        </tr>
+                     </thead>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>1 row
+                                 Nodes created: 1
+                                 Properties set: 2
+                                 Labels added: 1
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">Node[20]{name:"Andy",position:"Developer"}</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        CREATE (n:Person $props)
+                        RETURN n
+                        </strong></span></p>
+            </section>
+            <section class="section" id="create-create-multiple-nodes-with-a-parameter-for-their-properties">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h5 class="title"><a class="anchor" href="index.html#create-create-multiple-nodes-with-a-parameter-for-their-properties"></a>Create multiple nodes with a parameter for their properties
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <p>By providing Cypher an array of maps, it will create a node for each map.</p>
+               <p><span class="formalpara-title">Parameters.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "props" : [ {
+    "name" : "Andy",
+    "position" : "Developer"
+  }, {
+    "name" : "Michael",
+    "position" : "Developer"
+  } ]
+}</code></pre><p>
+                  
+               </p>
+               <p><span class="formalpara-title">Query.&nbsp;</span>
+                  
+               </p><pre class="programlisting highlight"><code data-lang="cypher">UNWIND $props AS map
+CREATE (n)
+SET n = map</code></pre><p>
+                  
+               </p>
+               <div class="table" id="d0e21916">
+                  <table class="table queryresult" summary="Result" border="1">
+                     <caption class="table-title">Table&nbsp;3.168.&nbsp;Result</caption>
+                     <colgroup>
+                        <col class="col_1"></col>
+                     </colgroup>
+                     <tfoot>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">
+                              <p>0 rows
+                                 Nodes created: 2
+                                 Properties set: 4
+                              </p>
+                           </th>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><code class="literal">(empty result)</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="cypherconsole"><span class="formalpara-title">Try this query live.&nbsp;</span><span class="database">
+                     CREATE (a:Person {name: 'A'}),
+                                     (b:Person {name: 'B'})
+                     
+                     
+                     </span><span class="command"><strong>
+                        UNWIND $props AS map
+                        CREATE (n) SET n = map
+                        </strong></span></p>
+            </section>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

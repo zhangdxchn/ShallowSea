@@ -1,0 +1,1551 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>3.5.1.&nbsp;Indexes - 3.5.&nbsp;Schema</title>
+      <link rel="stylesheet" type="text/css" href="../../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../../javascript/colorize.js" type="text/javascript"></script><script src="../../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="This section explains how to work with indexes in Neo4j and Cypher."></meta>
+      <link rel="prev" href="../index.html" title="3.5.&nbsp;Schema"></link>
+      <link rel="next" href="../constraints/index.html" title="3.5.2.&nbsp;Constraints"></link>
+      <link rel="shortcut icon" href="../../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../../index.html" id="logo"><img src="../../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Schema</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.5.1.&nbsp;Indexes</p></span><span class="nav-next"><a accesskey="n" href="../constraints/index.html">Constraints<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="query-schema-index">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title"><a class="anchor" href="index.html#query-schema-index"></a>3.5.1.&nbsp;Indexes
+                  </h3>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>This section explains how to work with indexes in Neo4j and Cypher.</p>
+         </div>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem"><a class="link" href="index.html#query-schema-index-introduction" title="3.5.1.1.&nbsp;Introduction">Introduction</a></li>
+               <li class="listitem"><a class="link" href="index.html#schema-index-create-a-single-property-index" title="3.5.1.2.&nbsp;Create a single-property index">Create a single-property index</a></li>
+               <li class="listitem"><a class="link" href="index.html#schema-index-create-a-composite-index" title="3.5.1.3.&nbsp;Create a composite index">Create a composite index</a></li>
+               <li class="listitem"><a class="link" href="index.html#schema-index-get-a-list-of-all-indexes-in-the-database" title="3.5.1.4.&nbsp;Get a list of all indexes in the database">Get a list of all indexes in the database</a></li>
+               <li class="listitem"><a class="link" href="index.html#schema-index-drop-a-single-property-index" title="3.5.1.5.&nbsp;Drop a single-property index">Drop a single-property index</a></li>
+               <li class="listitem"><a class="link" href="index.html#schema-index-drop-a-composite-index" title="3.5.1.6.&nbsp;Drop a composite index">Drop a composite index</a></li>
+               <li class="listitem">
+                  <p class="simpara"><a class="link" href="index.html#schema-index-use-index" title="3.5.1.7.&nbsp;Use index">Use index</a></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: circle; ">
+                        <li class="listitem"><a class="link" href="index.html#schema-index-equality-check-using-where-single-property-index" title="3.5.1.8.&nbsp;Equality check using WHERE (single-property index)">Equality check using <code class="literal">WHERE</code> (single-property index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-equality-check-using-where-composite-index" title="3.5.1.9.&nbsp;Equality check using WHERE (composite index)">Equality check using <code class="literal">WHERE</code> (composite index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-range-comparisons-using-where-single-property-index" title="3.5.1.10.&nbsp;Range comparisons using WHERE (single-property index)">Range comparisons using <code class="literal">WHERE</code> (single-property index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-multiple-range-comparisons-using-where-single-property-index" title="3.5.1.11.&nbsp;Multiple range comparisons using WHERE (single-property index)">Use index with <code class="literal">WHERE</code> using multiple range comparisons</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-list-membership-check-using-in-single-property-index" title="3.5.1.12.&nbsp;List membership check using IN (single-property index)">List membership check using <code class="literal">IN</code> (single-property index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-list-membership-check-using-in-composite-index" title="3.5.1.13.&nbsp;List membership check using IN (composite index)">List membership check using <code class="literal">IN</code> (composite index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-prefix-search-using-starts-with-single-property-index" title="3.5.1.14.&nbsp;Prefix search using STARTS WITH (single-property index)">Prefix search using <code class="literal">STARTS WITH</code> (single-property index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-suffix-search-using-ends-with-single-property-index" title="3.5.1.15.&nbsp;Suffix search using ENDS WITH (single-property index)">Suffix search using <code class="literal">ENDS WITH</code> (single-property index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-substring-search-using-contains-single-property-index" title="3.5.1.16.&nbsp;Substring search using CONTAINS (single-property index)">Substring search using <code class="literal">CONTAINS</code> (single-property index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-existence-check-using-exists-single-property-index" title="3.5.1.17.&nbsp;Existence check using exists (single-property index)">Existence check using <code class="literal">exists</code> (single-property index)</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-spatial-distance-searches-single-property-index" title="3.5.1.18.&nbsp;Spatial distance searches (single-property index)">Use index when executing a spatial distance search</a></li>
+                        <li class="listitem"><a class="link" href="index.html#schema-index-spatial-bounding-box-searches-single-property-index" title="3.5.1.19.&nbsp;Spatial bounding box searches (single-property index)">Use index when executing a spatial bounding box search</a></li>
+                     </ul>
+                  </div>
+               </li>
+               <li class="listitem"><a class="link" href="index.html#explicit-indexes-procedures" title="3.5.1.20.&nbsp;Use built-in procedures to manage and use explicit indexes">Use built-in procedures to manage and use explicit indexes</a></li>
+            </ul>
+         </div>
+         <section class="section" id="query-schema-index-introduction">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#query-schema-index-introduction"></a>3.5.1.1.&nbsp;Introduction
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>A database index is a redundant copy of some of the data in the database for the purpose of making searches of related data
+               more efficient.
+               This comes at the cost of additional storage space and slower writes, so deciding what to index and what not to index is an
+               important and often non-trivial task.
+            </p>
+            <p>Cypher enables the creation of indexes on one or more properties for all nodes that have a given label:</p>
+            <div class="itemizedlist">
+               <ul class="itemizedlist" style="list-style-type: disc; ">
+                  <li class="listitem">An index that is created on a single property for any given label is called a <span class="emphasis"><em>single-property index</em></span>.
+                  </li>
+                  <li class="listitem">An index that is created on more than one property for any given label is called a <span class="emphasis"><em>composite index</em></span>.
+                     Differences in the usage patterns between composite and single-property indexes are detailed in the examples below.
+                  </li>
+               </ul>
+            </div>
+            <p>Once an index has been created, it will automatically be managed and kept up to date by the database when the graph is changed.
+               Neo4j will automatically pick up and start using the index once it has been created and brought online.
+            </p>
+            <div class="admonitionblock note">
+               <table>
+                  <tbody>
+                     <tr>
+                        <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                        <td class="content">
+                           <p><a class="xref" href="../../query-tuning/using/index.html" title="3.6.4.&nbsp;Planner hints and the USING keyword">Section&nbsp;3.6.4, &#8220;Planner hints and the USING keyword&#8221;</a> describes how to make the Cypher planner use specific indexes (especially in cases where the planner would not necessarily
+                              have used them).
+                           </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="admonitionblock note">
+               <table>
+                  <tbody>
+                     <tr>
+                        <td class="icon" rowspan="2"><i class="fa icon-note" title="note"></i></td>
+                        <th>Index configuration and limitations</th>
+                     </tr>
+                     <tr>
+                        <td class="content">
+                           <p>For information on index configuration and limitations, refer to <a href="https://neo4j.com/docs/operations-manual/3.4/performance/index-configuration/" class="olink">Operations Manual &#8594; Index configuration</a>.
+                           </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </section>
+         <section class="section" id="schema-index-create-a-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-create-a-single-property-index"></a>3.5.1.2.&nbsp;Create a single-property index
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>An index on a single property for all nodes that have a particular label can be created with <code class="literal">CREATE INDEX ON :Label(property)</code>. Note that the index is not immediately available, but will be created in the background.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE INDEX ON :Person(firstname)</code></pre><p>
+               
+            </p>
+            <p class="queryresult"><span class="formalpara-title">Result.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>+--------------------------------------------+
+| No data returned, and nothing was changed. |
++--------------------------------------------+</code></pre><p class="queryresult">
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-create-a-composite-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-create-a-composite-index"></a>3.5.1.3.&nbsp;Create a composite index
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>An index on multiple properties for all nodes that have a particular label&#8201;&#8212;&#8201;i.e. a composite index&#8201;&#8212;&#8201;can be created with
+               <code class="literal">CREATE INDEX ON :Label(prop1, &#8230;&#8203;, propN)</code>. Only nodes labeled with the specified label and which contain all the properties in the index definition will be added to
+               the index. The following statement will create a composite index on all nodes labeled with <code class="literal">Person</code> and which have both an <code class="literal">age</code> and <code class="literal">country</code> property:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE INDEX ON :Person(age, country)</code></pre><p>
+               
+            </p>
+            <p>Assume we execute the query <code class="literal">CREATE (a:Person {firstname: 'Bill', age: 34, country: 'USA'}), (b:Person {firstname: 'Sue', age: 39})</code>. Node <code class="literal">a</code> has both an <code class="literal">age</code> and a <code class="literal">country</code> property, and so it will be added to the composite index. However, as node <code class="literal">b</code> has no <code class="literal">country</code> property, it will not be added to the composite index. Note that the composite index is not immediately available, but will
+               be created in the background.
+            </p>
+            <p class="queryresult"><span class="formalpara-title">Result.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>+-------------------+
+| No data returned. |
++-------------------+
+Indexes added: 1</code></pre><p class="queryresult">
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-get-a-list-of-all-indexes-in-the-database">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-get-a-list-of-all-indexes-in-the-database"></a>3.5.1.4.&nbsp;Get a list of all indexes in the database
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Calling the built-in procedure <code class="literal">db.indexes</code> will list all the indexes in the database.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CALL db.indexes</code></pre><p>
+               
+            </p>
+            <p class="queryresult"><span class="formalpara-title">Result.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| description                   | label    | properties    | state    | type                  | provider                                   | failureMessage |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| "INDEX ON :Person(firstname)" | "Person" | ["firstname"] | "ONLINE" | "node_label_property" | {version -&gt; "2.0", key -&gt; "lucene+native"} | ""             |
+| "INDEX ON :Person(highScore)" | "Person" | ["highScore"] | "ONLINE" | "node_label_property" | {version -&gt; "2.0", key -&gt; "lucene+native"} | ""             |
+| "INDEX ON :Person(location)"  | "Person" | ["location"]  | "ONLINE" | "node_label_property" | {version -&gt; "2.0", key -&gt; "lucene+native"} | ""             |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+3 rows</code></pre><p class="queryresult">
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-drop-a-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-drop-a-single-property-index"></a>3.5.1.5.&nbsp;Drop a single-property index
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>An index on all nodes that have a label and single property combination can be dropped with <code class="literal">DROP INDEX ON :Label(property)</code>.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">DROP INDEX ON :Person(firstname)</code></pre><p>
+               
+            </p>
+            <p class="queryresult"><span class="formalpara-title">Result.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>+-------------------+
+| No data returned. |
++-------------------+
+Indexes removed: 1</code></pre><p class="queryresult">
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-drop-a-composite-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-drop-a-composite-index"></a>3.5.1.6.&nbsp;Drop a composite index
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>A composite index on all nodes that have a label and multiple property combination can be dropped with <code class="literal">DROP INDEX ON :Label(prop1, &#8230;&#8203;, propN)</code>. The following statement will drop a composite index on all nodes labeled with <code class="literal">Person</code> and which have both an <code class="literal">age</code> and <code class="literal">country</code> property:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">DROP INDEX ON :Person(age, country)</code></pre><p>
+               
+            </p>
+            <p class="queryresult"><span class="formalpara-title">Result.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>+-------------------+
+| No data returned. |
++-------------------+
+Indexes removed: 1</code></pre><p class="queryresult">
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-use-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-use-index"></a>3.5.1.7.&nbsp;Use index
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>There is usually no need to specify which indexes to use in a query, Cypher will figure that out by itself. For example the
+               query below will use the <code class="literal">Person(firstname)</code> index, if it exists.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person { firstname: 'Andy' })
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| Operator        | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other              |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +ProduceResults |              1 |    1 |       0 |               0 |                 1 |               0.0000 | person    |                    |
+| |               +----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +NodeIndexSeek  |              1 |    1 |       3 |               0 |                 1 |               0.0000 | person    | :Person(firstname) |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-equality-check-using-where-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-equality-check-using-where-single-property-index"></a>3.5.1.8.&nbsp;Equality check using <code class="literal">WHERE</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>A query containing equality comparisons of a single indexed property in the <code class="literal">WHERE</code> clause is backed automatically by the index. It is also possible for a query with multiple <code class="literal">OR</code> predicates to use multiple indexes, if indexes exist on the properties. For example, if indexes exist on both <code class="literal">:Label(p1)</code> and <code class="literal">:Label(p2)</code>, <code class="literal">MATCH (n:Label) WHERE n.p1 = 1 OR n.p2 = 2 RETURN n</code> will use both indexes.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE person.firstname = 'Andy'
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| Operator        | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other              |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +ProduceResults |              1 |    1 |       0 |               0 |                 1 |               0.0000 | person    |                    |
+| |               +----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +NodeIndexSeek  |              1 |    1 |       3 |               0 |                 1 |               0.0000 | person    | :Person(firstname) |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-equality-check-using-where-composite-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-equality-check-using-where-composite-index"></a>3.5.1.9.&nbsp;Equality check using <code class="literal">WHERE</code> (composite index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>A query containing equality comparisons for all the properties of a composite index will automatically be backed by the same
+               index. The following query will use the composite index defined <a class="link" href="index.html#schema-index-create-a-composite-index" title="3.5.1.3.&nbsp;Create a composite index">earlier</a>:
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n:Person)
+WHERE n.age = 35 AND n.country = 'UK'
+RETURN n</code></pre><p>
+               
+            </p>
+            <p>However, the query <code class="literal">MATCH (n:Person) WHERE n.age = 35 RETURN n</code> will not be backed by the composite index, as the query does not contain an equality predicate on the <code class="literal">country</code> property. It will only be backed by an index on the <code class="literal">Person</code> label and <code class="literal">age</code> property defined thus: <code class="literal">:Person(age)</code>; i.e. a single-property index. Moreover, unlike single-property indexes, composite indexes currently do not support queries
+               containing the following types of predicates on properties in the index: existence check: <code class="literal">exists(n.prop)</code>; range search: <code class="literal">n.prop &gt; value</code>; prefix search: <code class="literal">STARTS WITH</code>; suffix search: <code class="literal">ENDS WITH</code>; and substring search: <code class="literal">CONTAINS</code>.
+            </p>
+            <p class="queryresult"><span class="formalpara-title">Result.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>+-------------------------------------------------------------------------------------------+
+| n                                                                                         |
++-------------------------------------------------------------------------------------------+
+| Node[0]{surname:"Smith",age:35,name:"john",highScore:54321,firstname:"John",country:"UK"} |
++-------------------------------------------------------------------------------------------+
+1 row</code></pre><p class="queryresult">
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-range-comparisons-using-where-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-range-comparisons-using-where-single-property-index"></a>3.5.1.10.&nbsp;Range comparisons using <code class="literal">WHERE</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Single-property indexes are also automatically used for inequality (range) comparisons of an indexed property in the <code class="literal">WHERE</code> clause. Composite indexes are currently not able to support range comparisons.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE person.firstname &gt; 'B'
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| Operator              | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other                                |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| +ProduceResults       |             10 |    1 |       0 |               0 |                 1 |               0.0000 | person    |                                      |
+| |                     +----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| +NodeIndexSeekByRange |             10 |    1 |       3 |               0 |                 1 |               0.0000 | person    | :Person(firstname) &gt; {  AUTOSTRING0} |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-multiple-range-comparisons-using-where-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-multiple-range-comparisons-using-where-single-property-index"></a>3.5.1.11.&nbsp;Multiple range comparisons using <code class="literal">WHERE</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>When the <code class="literal">WHERE</code> clause contains multiple inequality (range) comparisons for the same property, these can be combined in a single index range
+               seek.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE 10000 &lt; person.highScore &lt; 20000
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------------------------------+
+| Operator              | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other                                                                   |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------------------------------+
+| +ProduceResults       |              5 |    1 |       0 |               0 |                 1 |               0.0000 | person    |                                                                         |
+| |                     +----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------------------------------+
+| +NodeIndexSeekByRange |              5 |    1 |       3 |               0 |                 1 |               0.0000 | person    | :Person(highScore) &gt; {  AUTOINT1} AND :Person(highScore) &lt; {  AUTOINT0} |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------------------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-list-membership-check-using-in-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-list-membership-check-using-in-single-property-index"></a>3.5.1.12.&nbsp;List membership check using <code class="literal">IN</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>The <code class="literal">IN</code> predicate on <code class="literal">person.firstname</code> in the following query will use the single-property index <code class="literal">Person(firstname)</code> if it exists.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE person.firstname IN ['Andy', 'John']
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| Operator        | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other              |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +ProduceResults |             24 |    2 |       0 |               2 |                 0 |               1.0000 | person    |                    |
+| |               +----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +NodeIndexSeek  |             24 |    2 |       5 |               2 |                 0 |               1.0000 | person    | :Person(firstname) |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+
+Total database accesses: 5</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-list-membership-check-using-in-composite-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-list-membership-check-using-in-composite-index"></a>3.5.1.13.&nbsp;List membership check using <code class="literal">IN</code> (composite index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>The <code class="literal">IN</code> predicates on <code class="literal">person.age</code> and <code class="literal">person.country</code> in the following query will use the composite index <code class="literal">Person(age, country)</code> if it exists.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE person.age IN [10, 20, 35] AND person.country IN ['Sweden', 'USA', 'UK']
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+----------------------+
+| Operator        | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other                |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+----------------------+
+| +ProduceResults |            451 |    1 |       0 |               0 |                 0 |               0.0000 | person    |                      |
+| |               +----------------+------+---------+-----------------+-------------------+----------------------+-----------+----------------------+
+| +NodeIndexSeek  |            451 |    1 |      11 |               0 |                 0 |               0.0000 | person    | :Person(age,country) |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+----------------------+
+
+Total database accesses: 11</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-prefix-search-using-starts-with-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-prefix-search-using-starts-with-single-property-index"></a>3.5.1.14.&nbsp;Prefix search using <code class="literal">STARTS WITH</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>The <code class="literal">STARTS WITH</code> predicate on <code class="literal">person.firstname</code> in the following query will use the <code class="literal">Person(firstname)</code> index, if it exists. Composite indexes are currently not able to support <code class="literal">STARTS WITH</code>.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE person.firstname STARTS WITH 'And'
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------+
+| Operator              | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other                                           |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------+
+| +ProduceResults       |             26 |    1 |       0 |               1 |                 0 |               1.0000 | person    |                                                 |
+| |                     +----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------+
+| +NodeIndexSeekByRange |             26 |    1 |       3 |               1 |                 0 |               1.0000 | person    | :Person(firstname STARTS WITH $`  AUTOSTRING0`) |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+-------------------------------------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-suffix-search-using-ends-with-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-suffix-search-using-ends-with-single-property-index"></a>3.5.1.15.&nbsp;Suffix search using <code class="literal">ENDS WITH</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>The <code class="literal">ENDS WITH</code> predicate on <code class="literal">person.firstname</code> in the following query will use the <code class="literal">Person(firstname)</code> index, if it exists. All values stored in the <code class="literal">Person(firstname)</code> index will be searched, and entries ending with <code class="literal">'hn'</code> will be returned. This means that although the search will not be optimized to the extent of queries using <code class="literal">=</code>, <code class="literal">IN</code>, <code class="literal">&gt;</code>, <code class="literal">&lt;</code> or <code class="literal">STARTS WITH</code>, it is still faster than not using an index in the first place. Composite indexes are currently not able to support <code class="literal">ENDS WITH</code>.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE person.firstname ENDS WITH 'hn'
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++------------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| Operator               | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other                                |
++------------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| +ProduceResults        |             26 |    1 |       0 |               0 |                 0 |               0.0000 | person    |                                      |
+| |                      +----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| +NodeIndexEndsWithScan |             26 |    1 |       3 |               1 |                 0 |               1.0000 | person    | :Person(firstname); $`  AUTOSTRING0` |
++------------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-substring-search-using-contains-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-substring-search-using-contains-single-property-index"></a>3.5.1.16.&nbsp;Substring search using <code class="literal">CONTAINS</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>The <code class="literal">CONTAINS</code> predicate on <code class="literal">person.firstname</code> in the following query will use the <code class="literal">Person(firstname)</code> index, if it exists. All values stored in the <code class="literal">Person(firstname)</code> index will be searched, and entries containing <code class="literal">'h'</code> will be returned. This means that although the search will not be optimized to the extent of queries using <code class="literal">=</code>, <code class="literal">IN</code>, <code class="literal">&gt;</code>, <code class="literal">&lt;</code> or <code class="literal">STARTS WITH</code>, it is still faster than not using an index in the first place. Composite indexes are currently not able to support <code class="literal">CONTAINS</code>.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE person.firstname CONTAINS 'h'
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++------------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| Operator               | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other                                |
++------------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| +ProduceResults        |             26 |    1 |       0 |               0 |                 0 |               0.0000 | person    |                                      |
+| |                      +----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+| +NodeIndexContainsScan |             26 |    1 |       3 |               1 |                 0 |               1.0000 | person    | :Person(firstname); $`  AUTOSTRING0` |
++------------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-existence-check-using-exists-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-existence-check-using-exists-single-property-index"></a>3.5.1.17.&nbsp;Existence check using <code class="literal">exists</code> (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>The <code class="literal">exists(p.firstname)</code> predicate in the following query will use the <code class="literal">Person(firstname)</code> index, if it exists. Composite indexes are currently not able to support the <code class="literal">exists</code> predicate.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (p:Person)
+WHERE exists(p.firstname)
+RETURN p</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| Operator        | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other              |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +ProduceResults |              2 |    2 |       0 |               0 |                 0 |               0.0000 | p         |                    |
+| |               +----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+| +NodeIndexScan  |              2 |    2 |       4 |               0 |                 4 |               0.0000 | p         | :Person(firstname) |
++-----------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+--------------------+
+
+Total database accesses: 4</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-spatial-distance-searches-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-spatial-distance-searches-single-property-index"></a>3.5.1.18.&nbsp;Spatial distance searches (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>If a property with point values is indexed, the index is used for spatial distance searches as well as for range queries.</p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (p:Person)
+WHERE distance(p.location, point({ x: 1, y: 2 }))&lt; 2
+RETURN p.location</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------------+-----------------------------------------------------------------------------------+
+| Operator              | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables       | Other                                                                             |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------------+-----------------------------------------------------------------------------------+
+| +ProduceResults       |             15 |    9 |       0 |              30 |                 0 |               1.0000 | p, p.location   |                                                                                   |
+| |                     +----------------+------+---------+-----------------+-------------------+----------------------+-----------------+-----------------------------------------------------------------------------------+
+| +Projection           |             15 |    9 |       9 |              30 |                 0 |               1.0000 | p.location -- p | {p.location : p.location}                                                         |
+| |                     +----------------+------+---------+-----------------+-------------------+----------------------+-----------------+-----------------------------------------------------------------------------------+
+| +Filter               |             15 |    9 |       9 |              30 |                 0 |               1.0000 | p               | distance(p.location, point({x: $`  AUTOINT0`, y: $`  AUTOINT1`})) &lt; $`  AUTOINT2` |
+| |                     +----------------+------+---------+-----------------+-------------------+----------------------+-----------------+-----------------------------------------------------------------------------------+
+| +NodeIndexSeekByRange |             15 |    9 |      11 |              30 |                 0 |               1.0000 | p               | :Person(location) WHERE distance(_,point(x,y)) &lt; Parameter(  AUTOINT2,Integer)    |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------------+-----------------------------------------------------------------------------------+
+
+Total database accesses: 29</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="schema-index-spatial-bounding-box-searches-single-property-index">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#schema-index-spatial-bounding-box-searches-single-property-index"></a>3.5.1.19.&nbsp;Spatial bounding box searches (single-property index)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>The ability to do index seeks on bounded ranges works even with the 2D and 3D spatial <code class="literal">Point</code> types.
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (person:Person)
+WHERE point({ x: 1, y: 5 })&lt; person.location &lt; point({ x: 2, y: 6 })
+RETURN person</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query Plan.&nbsp;</span>
+               
+            </p><pre class="screen highlight"><code>Compiler CYPHER 3.4
+
+Planner COST
+
+Runtime INTERPRETED
+
+Runtime version 3.4
+
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------+
+| Operator              | Estimated Rows | Rows | DB Hits | Page Cache Hits | Page Cache Misses | Page Cache Hit Ratio | Variables | Other                                                                                                                           |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------+
+| +ProduceResults       |              7 |    1 |       0 |               7 |                 0 |               1.0000 | person    |                                                                                                                                 |
+| |                     +----------------+------+---------+-----------------+-------------------+----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------+
+| +NodeIndexSeekByRange |              7 |    1 |       3 |               7 |                 0 |               1.0000 | person    | :Person(location) &gt; point({x: {  AUTOINT2}, y: {  AUTOINT3}}) AND :Person(location) &lt; point({x: {  AUTOINT0}, y: {  AUTOINT1}}) |
++-----------------------+----------------+------+---------+-----------------+-------------------+----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------+
+
+Total database accesses: 3</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="explicit-indexes-procedures">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#explicit-indexes-procedures"></a>3.5.1.20.&nbsp;Use built-in procedures to manage and use explicit indexes
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Explicit indexes are alternative data structures, in which a user can explicitly maintain search and seek data for nodes and
+               relationships.
+               These data structures are special-purpose and the procedures are primarily provided for users who have legacy deployments
+               depending on such structures.
+            </p>
+            <div class="informaltable">
+               <div class="table" id="d0e54333">
+                  <table class="informaltable" border="1">
+                     <colgroup>
+                        <col class="col_1"></col>
+                        <col class="col_2"></col>
+                     </colgroup>
+                     <thead>
+                        <tr>
+                           <th style="text-align: left; vertical-align: top; ">Signature</th>
+                           <th style="text-align: left; vertical-align: top; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.addNode" title="Table&nbsp;3.385.&nbsp;db.index.explicit.addNode">db.index.explicit.addNode</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Add a node to an explicit index based on a specified key and value</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.addRelationship" title="Table&nbsp;3.386.&nbsp;db.index.explicit.addRelationship">db.index.explicit.addRelationship</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Add a relationship to an explicit index based on a specified key and value</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.auto.searchNodes" title="Table&nbsp;3.387.&nbsp;db.index.explicit.auto.searchNodes">db.index.explicit.auto.searchNodes</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Search nodes from explicit automatic index. Replaces <code class="literal">START n=node:node_auto_index('key:foo*')</code></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.auto.searchRelationships" title="Table&nbsp;3.388.&nbsp;db.index.explicit.auto.searchRelationships">db.index.explicit.auto.searchRelationships</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Search relationship from explicit automatic index. Replaces <code class="literal">START r=relationship:relationship_auto_index('key:foo*')</code></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.auto.seekNodes" title="Table&nbsp;3.389.&nbsp;db.index.explicit.auto.seekNodes">db.index.explicit.auto.seekNodes</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Get node from explicit automatic index. Replaces <code class="literal">START n=node:node_auto_index(key = 'A')</code></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.auto.seekRelationships" title="Table&nbsp;3.390.&nbsp;db.index.explicit.auto.seekRelationships">db.index.explicit.auto.seekRelationships</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Get relationship from explicit automatic index. Replaces <code class="literal">START r=relationship:relationship_auto_index(key = 'A')</code></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.drop" title="Table&nbsp;3.391.&nbsp;db.index.explicit.drop">db.index.explicit.drop</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Remove an explicit index - YIELD type, name, config</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.existsForNodes" title="Table&nbsp;3.392.&nbsp;db.index.explicit.existsForNodes">db.index.explicit.existsForNodes</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Check if a node explicit index exists</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.existsForRelationships" title="Table&nbsp;3.393.&nbsp;db.index.explicit.existsForRelationships">db.index.explicit.existsForRelationships</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Check if a relationship explicit index exists</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.forNodes" title="Table&nbsp;3.394.&nbsp;db.index.explicit.forNodes">db.index.explicit.forNodes</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Get or create a node explicit index - YIELD type, name, config</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.forRelationships" title="Table&nbsp;3.395.&nbsp;db.index.explicit.forRelationships">db.index.explicit.forRelationships</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Get or create a relationship explicit index - YIELD type, name, config</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.list" title="Table&nbsp;3.396.&nbsp;db.index.explicit.list">db.index.explicit.list</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>List all explicit indexes - YIELD type, name, config</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.removeNode" title="Table&nbsp;3.397.&nbsp;db.index.explicit.removeNode">db.index.explicit.removeNode(indexName</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Remove a node from an explicit index with an optional key</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.removeRelationship" title="Table&nbsp;3.398.&nbsp;db.index.explicit.removeRelationship">db.index.explicit.removeRelationship</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Remove a relationship from an explicit index with an optional key</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.searchNodes" title="Table&nbsp;3.399.&nbsp;db.index.explicit.searchNodes">db.index.explicit.searchNodes</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Search nodes from explicit index. Replaces <code class="literal">START n=node:nodes('key:foo*')</code></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.searchRelationships" title="Table&nbsp;3.400.&nbsp;db.index.explicit.searchRelationships">db.index.explicit.searchRelationships</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Search relationship from explicit index. Replaces <code class="literal">START r=relationship:relIndex('key:foo*')</code></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.searchRelationshipsBetween" title="Table&nbsp;3.401.&nbsp;db.index.explicit.searchRelationshipsBetween">db.index.explicit.searchRelationshipsBetween</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Search relationship in explicit index, starting at the node 'in' and ending at 'out'</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.searchRelationshipsIn" title="Table&nbsp;3.402.&nbsp;db.index.explicit.searchRelationshipsIn">db.index.explicit.searchRelationshipsIn</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Search relationship in explicit index, starting at the node 'in'</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.searchRelationshipsOut" title="Table&nbsp;3.403.&nbsp;db.index.explicit.searchRelationshipsOut">db.index.explicit.searchRelationshipsOut</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Search relationship in explicit index, ending at the node 'out'</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.seekNodes" title="Table&nbsp;3.404.&nbsp;db.index.explicit.seekNodes">db.index.explicit.seekNodes</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Get node from explicit index. Replaces <code class="literal">START n=node:nodes(key = 'A')</code></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p><a class="link" href="index.html#db.index.explicit.seekRelationships" title="Table&nbsp;3.405.&nbsp;db.index.explicit.seekRelationships">db.index.explicit.seekRelationships</a></p>
+                           </td>
+                           <td style="text-align: left; vertical-align: top; ">
+                              <p>Get relationship from explicit index. Replaces <code class="literal">START r=relationship:relIndex(key = 'A')</code></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <div class="table" id="db.index.explicit.addNode">
+               <table class="table" summary="db.index.explicit.addNode" border="1">
+                  <caption class="table-title">Table&nbsp;3.385.&nbsp;db.index.explicit.addNode</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.addNode(indexName :: STRING?, node :: NODE?, key :: STRING?, value :: ANY?) :: (success :: BOOLEAN?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Add a node to an explicit index based on a specified key and value</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.addRelationship">
+               <table class="table" summary="db.index.explicit.addRelationship" border="1">
+                  <caption class="table-title">Table&nbsp;3.386.&nbsp;db.index.explicit.addRelationship</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.addRelationship(indexName :: STRING?, relationship :: RELATIONSHIP?, key :: STRING?, value :: ANY?) :: (success
+                                 :: BOOLEAN?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Add a relationship to an explicit index based on a specified key and value</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.auto.searchNodes">
+               <table class="table" summary="db.index.explicit.auto.searchNodes" border="1">
+                  <caption class="table-title">Table&nbsp;3.387.&nbsp;db.index.explicit.auto.searchNodes</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.auto.searchNodes(query :: ANY?) :: (node :: NODE?, weight :: FLOAT?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Search nodes from explicit automatic index. Replaces <code class="literal">START n=node:node_auto_index('key:foo*')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.auto.searchRelationships">
+               <table class="table" summary="db.index.explicit.auto.searchRelationships" border="1">
+                  <caption class="table-title">Table&nbsp;3.388.&nbsp;db.index.explicit.auto.searchRelationships</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.auto.searchRelationships(query :: ANY?) :: (relationship :: RELATIONSHIP?, weight :: FLOAT?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Search relationship from explicit automatic index. Replaces <code class="literal">START r=relationship:relationship_auto_index('key:foo*')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.auto.seekNodes">
+               <table class="table" summary="db.index.explicit.auto.seekNodes" border="1">
+                  <caption class="table-title">Table&nbsp;3.389.&nbsp;db.index.explicit.auto.seekNodes</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.auto.seekNodes(key :: STRING?, value :: ANY?) :: (node :: NODE?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Get node from explicit automatic index. Replaces <code class="literal">START n=node:node_auto_index(key = 'A')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.auto.seekRelationships">
+               <table class="table" summary="db.index.explicit.auto.seekRelationships" border="1">
+                  <caption class="table-title">Table&nbsp;3.390.&nbsp;db.index.explicit.auto.seekRelationships</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.auto.seekRelationships(key :: STRING?, value :: ANY?) :: (relationship :: RELATIONSHIP?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Get relationship from explicit automatic index. Replaces <code class="literal">START r=relationship:relationship_auto_index(key = 'A')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.drop">
+               <table class="table" summary="db.index.explicit.drop" border="1">
+                  <caption class="table-title">Table&nbsp;3.391.&nbsp;db.index.explicit.drop</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.drop(indexName :: STRING?) :: (type :: STRING?, name :: STRING?, config :: MAP?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Remove an explicit index - YIELD type, name, config</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.existsForNodes">
+               <table class="table" summary="db.index.explicit.existsForNodes" border="1">
+                  <caption class="table-title">Table&nbsp;3.392.&nbsp;db.index.explicit.existsForNodes</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.existsForNodes(indexName :: STRING?) :: (success :: BOOLEAN?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Check if a node explicit index exists</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.existsForRelationships">
+               <table class="table" summary="db.index.explicit.existsForRelationships" border="1">
+                  <caption class="table-title">Table&nbsp;3.393.&nbsp;db.index.explicit.existsForRelationships</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.existsForRelationships(indexName :: STRING?) :: (success :: BOOLEAN?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Check if a relationship explicit index exists</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.forNodes">
+               <table class="table" summary="db.index.explicit.forNodes" border="1">
+                  <caption class="table-title">Table&nbsp;3.394.&nbsp;db.index.explicit.forNodes</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.forNodes(indexName :: STRING?) :: (type :: STRING?, name :: STRING?, config :: MAP?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Get or create a node explicit index - YIELD type, name, config</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.forRelationships">
+               <table class="table" summary="db.index.explicit.forRelationships" border="1">
+                  <caption class="table-title">Table&nbsp;3.395.&nbsp;db.index.explicit.forRelationships</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.forRelationships(indexName :: STRING?) :: (type :: STRING?, name :: STRING?, config :: MAP?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Get or create a relationship explicit index - YIELD type, name, config</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.list">
+               <table class="table" summary="db.index.explicit.list" border="1">
+                  <caption class="table-title">Table&nbsp;3.396.&nbsp;db.index.explicit.list</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.list() :: (type :: STRING?, name :: STRING?, config :: MAP?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>List all explicit indexes - YIELD type, name, config</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.removeNode">
+               <table class="table" summary="db.index.explicit.removeNode" border="1">
+                  <caption class="table-title">Table&nbsp;3.397.&nbsp;db.index.explicit.removeNode</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.removeNode(indexName :: STRING?, node :: NODE?, key :: STRING?) :: (success :: BOOLEAN?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Remove a node from an explicit index with an optional key</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.removeRelationship">
+               <table class="table" summary="db.index.explicit.removeRelationship" border="1">
+                  <caption class="table-title">Table&nbsp;3.398.&nbsp;db.index.explicit.removeRelationship</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.removeRelationship(indexName :: STRING?, relationship :: RELATIONSHIP?, key :: STRING?) :: (success :: BOOLEAN?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Remove a relationship from an explicit index with an optional key</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.searchNodes">
+               <table class="table" summary="db.index.explicit.searchNodes" border="1">
+                  <caption class="table-title">Table&nbsp;3.399.&nbsp;db.index.explicit.searchNodes</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.searchNodes(indexName :: STRING?, query :: ANY?) :: (node :: NODE?, weight :: FLOAT?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Search nodes from explicit index. Replaces <code class="literal">START n=node:nodes('key:foo*')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.searchRelationships">
+               <table class="table" summary="db.index.explicit.searchRelationships" border="1">
+                  <caption class="table-title">Table&nbsp;3.400.&nbsp;db.index.explicit.searchRelationships</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.searchRelationships(indexName :: STRING?, query :: ANY?) :: (relationship :: RELATIONSHIP?, weight :: FLOAT?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Search relationship from explicit index. Replaces <code class="literal">START r=relationship:relIndex('key:foo*')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.searchRelationshipsBetween">
+               <table class="table" summary="db.index.explicit.searchRelationshipsBetween" border="1">
+                  <caption class="table-title">Table&nbsp;3.401.&nbsp;db.index.explicit.searchRelationshipsBetween</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.searchRelationshipsBetween(indexName :: STRING?, in :: NODE?, out :: NODE?, query :: ANY?) :: (relationship
+                                 :: RELATIONSHIP?, weight :: FLOAT?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Search relationship in explicit index, starting at the node 'in' and ending at 'out'</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.searchRelationshipsIn">
+               <table class="table" summary="db.index.explicit.searchRelationshipsIn" border="1">
+                  <caption class="table-title">Table&nbsp;3.402.&nbsp;db.index.explicit.searchRelationshipsIn</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.searchRelationshipsIn(indexName :: STRING?, in :: NODE?, query :: ANY?) :: (relationship :: RELATIONSHIP?,
+                                 weight :: FLOAT?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Search relationship in explicit index, starting at the node 'in'</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.searchRelationshipsOut">
+               <table class="table" summary="db.index.explicit.searchRelationshipsOut" border="1">
+                  <caption class="table-title">Table&nbsp;3.403.&nbsp;db.index.explicit.searchRelationshipsOut</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.searchRelationshipsOut(indexName :: STRING?, out :: NODE?, query :: ANY?) :: (relationship :: RELATIONSHIP?,
+                                 weight :: FLOAT?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Search relationship in explicit index, ending at the node 'out'</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.seekNodes">
+               <table class="table" summary="db.index.explicit.seekNodes" border="1">
+                  <caption class="table-title">Table&nbsp;3.404.&nbsp;db.index.explicit.seekNodes</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.seekNodes(indexName :: STRING?, key :: STRING?, value :: ANY?) :: (node :: NODE?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Get node from explicit index. Replaces <code class="literal">START n=node:nodes(key = 'A')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="table" id="db.index.explicit.seekRelationships">
+               <table class="table" summary="db.index.explicit.seekRelationships" border="1">
+                  <caption class="table-title">Table&nbsp;3.405.&nbsp;db.index.explicit.seekRelationships</caption>
+                  <colgroup>
+                     <col class="col_1"></col>
+                     <col class="col_2"></col>
+                  </colgroup>
+                  <thead>
+                     <tr>
+                        <th style="text-align: left; vertical-align: top; ">Signature</th>
+                        <th style="text-align: left; vertical-align: top; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p><code class="literal">db.index.explicit.seekRelationships(indexName :: STRING?, key :: STRING?, value :: ANY?) :: (relationship :: RELATIONSHIP?)</code></p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top; ">
+                           <p>Get relationship from explicit index. Replaces <code class="literal">START r=relationship:relIndex(key = 'A')</code></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

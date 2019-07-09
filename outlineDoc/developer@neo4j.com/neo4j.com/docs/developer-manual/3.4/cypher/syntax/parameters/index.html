@@ -1,0 +1,464 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>3.2.6.&nbsp;Parameters - 3.2.&nbsp;Syntax</title>
+      <link rel="stylesheet" type="text/css" href="../../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../../javascript/colorize.js" type="text/javascript"></script><script src="../../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <link rel="prev" href="../reserved/index.html" title="3.2.5.&nbsp;Reserved keywords"></link>
+      <link rel="next" href="../operators/index.html" title="3.2.7.&nbsp;Operators"></link>
+      <link rel="shortcut icon" href="../../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../../index.html" id="logo"><img src="../../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../reserved/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Reserved keywords</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.2.6.&nbsp;Parameters</p></span><span class="nav-next"><a accesskey="n" href="../operators/index.html">Operators<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="cypher-parameters">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h3 class="title"><a class="anchor" href="index.html#cypher-parameters"></a>3.2.6.&nbsp;Parameters
+                  </h3>
+               </div>
+            </div>
+         </div>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-introduction" title="3.2.6.1.&nbsp;Introduction">Introduction</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-string-literal" title="3.2.6.2.&nbsp;String literal">String literal</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-regular-expression" title="3.2.6.3.&nbsp;Regular expression">Regular expression</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-case-sensitive-pattern-matching" title="3.2.6.4.&nbsp;Case-sensitive string pattern matching">Case-sensitive string pattern matching</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-create-node-with-properties" title="3.2.6.5.&nbsp;Create node with properties">Create node with properties</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-create-multiple-nodes-with-properties" title="3.2.6.6.&nbsp;Create multiple nodes with properties">Create multiple nodes with properties</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-setting-all-properties-on-a-node" title="3.2.6.7.&nbsp;Setting all properties on a node">Setting all properties on a node</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-skip-and-limit" title="3.2.6.8.&nbsp;SKIP and LIMIT"><code class="literal">SKIP</code> and <code class="literal">LIMIT</code></a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-node-id" title="3.2.6.9.&nbsp;Node id">Node id</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-multiple-node-ids" title="3.2.6.10.&nbsp;Multiple node ids">Multiple node ids</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-call-procedure" title="3.2.6.11.&nbsp;Calling procedures">Calling procedures</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-index-value-explicit" title="3.2.6.12.&nbsp;Index value (explicit indexes)">Index value (explicit indexes)</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-parameters-index-query-explicit" title="3.2.6.13.&nbsp;Index query (explicit indexes)">Index query (explicit indexes)</a></li>
+            </ul>
+         </div>
+         <section class="section" id="cypher-parameters-introduction">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-introduction"></a>3.2.6.1.&nbsp;Introduction
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Cypher supports querying with parameters.
+               This means developers don&#8217;t have to resort to string building to create a query.
+               Additionally, parameters make caching of execution plans much easier for Cypher, thus leading to faster query execution times.
+            </p>
+            <p>Parameters can be used for:</p>
+            <div class="itemizedlist">
+               <ul class="itemizedlist" style="list-style-type: disc; ">
+                  <li class="listitem">literals and expressions</li>
+                  <li class="listitem">node and relationship ids</li>
+                  <li class="listitem">for explicit indexes only: index values and queries</li>
+               </ul>
+            </div>
+            <p>Parameters cannot be used for the following constructs, as these form part of the query structure that is compiled into a
+               query plan:
+            </p>
+            <div class="itemizedlist">
+               <ul class="itemizedlist" style="list-style-type: disc; ">
+                  <li class="listitem">property keys; so, <code class="literal">MATCH (n) WHERE n.$param = 'something'</code> is invalid
+                  </li>
+                  <li class="listitem">relationship types</li>
+                  <li class="listitem">labels</li>
+               </ul>
+            </div>
+            <p>Parameters may consist of letters and numbers, and any combination of these, but cannot start with a number or a currency
+               symbol.
+            </p>
+            <p>For details on using parameters via the Neo4j REST API, see <a class="xref" href="../../../http-api/index.html#http-api-transactional" title="5.1.&nbsp;Transactional Cypher HTTP endpoint">Section&nbsp;5.1, &#8220;Transactional Cypher HTTP endpoint&#8221;</a>.
+            </p>
+            <p>We provide below a comprehensive list of examples of parameter usage.
+               In these examples, parameters are given in JSON; the exact manner in which they are to be submitted depends upon the driver
+               being used.
+            </p>
+            <div class="admonitionblock note">
+               <table>
+                  <tbody>
+                     <tr>
+                        <td class="icon"><i class="fa icon-note" title="note"></i></td>
+                        <td class="content">
+                           <p>It is recommended that the new parameter syntax <code class="literal">$param</code> is used, as the old syntax <code class="literal">{param}</code> is deprecated and will be removed altogether in a later release.
+                           </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </section>
+         <section class="section" id="cypher-parameters-string-literal">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-string-literal"></a>3.2.6.2.&nbsp;String literal
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "name" : "Johan"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n:Person)
+WHERE n.name = $name
+RETURN n</code></pre><p>
+               
+            </p>
+            <p>You can use parameters in this syntax as well:</p>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "name" : "Johan"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n:Person { name: $name })
+RETURN n</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-regular-expression">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-regular-expression"></a>3.2.6.3.&nbsp;Regular expression
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "regex" : ".*h.*"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n:Person)
+WHERE n.name =~ $regex
+RETURN n.name</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-case-sensitive-pattern-matching">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-case-sensitive-pattern-matching"></a>3.2.6.4.&nbsp;Case-sensitive string pattern matching
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "name" : "Michael"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n:Person)
+WHERE n.name STARTS WITH $name
+RETURN n.name</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-create-node-with-properties">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-create-node-with-properties"></a>3.2.6.5.&nbsp;Create node with properties
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "props" : {
+    "name" : "Andy",
+    "position" : "Developer"
+  }
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CREATE ($props)</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-create-multiple-nodes-with-properties">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-create-multiple-nodes-with-properties"></a>3.2.6.6.&nbsp;Create multiple nodes with properties
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "props" : [ {
+    "awesome" : true,
+    "name" : "Andy",
+    "position" : "Developer"
+  }, {
+    "children" : 3,
+    "name" : "Michael",
+    "position" : "Developer"
+  } ]
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">UNWIND $props AS properties
+CREATE (n:Person)
+SET n = properties
+RETURN n</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-setting-all-properties-on-a-node">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-setting-all-properties-on-a-node"></a>3.2.6.7.&nbsp;Setting all properties on a node
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p>Note that this will replace all the current properties.</p>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "props" : {
+    "name" : "Andy",
+    "position" : "Developer"
+  }
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n:Person)
+WHERE n.name='Michaela'
+SET n = $props</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-skip-and-limit">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-skip-and-limit"></a>3.2.6.8.&nbsp;<code class="literal">SKIP</code> and <code class="literal">LIMIT</code></h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "s" : 1,
+  "l" : 1
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n:Person)
+RETURN n.name
+SKIP $s
+LIMIT $l</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-node-id">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-node-id"></a>3.2.6.9.&nbsp;Node id
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "id" : 0
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n)
+WHERE id(n)= $id
+RETURN n.name</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-multiple-node-ids">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-multiple-node-ids"></a>3.2.6.10.&nbsp;Multiple node ids
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "ids" : [ 0, 1, 2 ]
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">MATCH (n)
+WHERE id(n) IN $ids
+RETURN n.name</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-call-procedure">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-call-procedure"></a>3.2.6.11.&nbsp;Calling procedures
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "indexname" : ":Person(name)"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CALL db.resampleIndex($indexname)</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-index-value-explicit">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-index-value-explicit"></a>3.2.6.12.&nbsp;Index value (explicit indexes)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "value" : "Michaela"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">START n=node:people(name = $value)
+RETURN n</code></pre><p>
+               
+            </p>
+         </section>
+         <section class="section" id="cypher-parameters-index-query-explicit">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h4 class="title"><a class="anchor" href="index.html#cypher-parameters-index-query-explicit"></a>3.2.6.13.&nbsp;Index query (explicit indexes)
+                     </h4>
+                  </div>
+               </div>
+            </div>
+            <p><span class="formalpara-title">Parameters.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="javascript">{
+  "query" : "name:Bob"
+}</code></pre><p>
+               
+            </p>
+            <p><span class="formalpara-title">Query.&nbsp;</span>
+               
+            </p><pre class="programlisting highlight"><code data-lang="cypher">START n=node:people($query)
+RETURN n</code></pre><p>
+               
+            </p>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>

@@ -1,0 +1,928 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title>3.8.&nbsp;Deprecations, additions and compatibility - Chapter&nbsp;3.&nbsp;Cypher</title>
+      <link rel="stylesheet" type="text/css" href="../../docbook.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/theme/neo.min.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/extra.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/chunked-base.css"></link>
+      <link rel="stylesheet" type="text/css" href="../../css/console.css"></link><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script><script src="../../../../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/codemirror.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/addon/runmode/runmode.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/javascript/javascript.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/shell/shell.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/python/python.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/xml/xml.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/clike/clike.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/cypher/cypher.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/properties/properties.min.js" type="text/javascript"></script><script src="../../../../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.36.0/mode/groovy/groovy.min.js" type="text/javascript"></script><script src="../../javascript/colorize.js" type="text/javascript"></script><script src="../../javascript/tabs-for-chunked.js" type="text/javascript"></script><script src="../../javascript/mp-nav.js" type="text/javascript"></script><script src="../../javascript/versionswitcher.js" type="text/javascript"></script><script src="../../javascript/version.js" type="text/javascript"></script><script src="https://s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js" type="text/javascript"></script><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"></meta>
+      <meta name="description" content="Cypher is a language that is constantly evolving. New features get added to the language continuously, and occasionally, some features become deprecated and are subsequently removed."></meta>
+      <link rel="prev" href="../execution-plans/shortestpath-planning/index.html" title="3.7.5.&nbsp;Shortest path planning"></link>
+      <link rel="next" href="../keyword-glossary/index.html" title="3.9.&nbsp;Glossary of keywords"></link>
+      <link rel="shortcut icon" href="../../../../../wp-content/themes/neo4jweb/favicon.ico"></link><script>
+        $(document).ready(function() {
+          CodeMirror.colorize();
+          tabTheSource($('body'));
+          var $header = $('header').first();
+          $header.prepend(
+            $('<a href="../../index.html" id="logo"><img src="../../../../../wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png" alt="Neo4j Logo"></img></a>')
+          );
+          var $sidebar = $('<div id="sidebar-wrapper"></div>');
+          $.get('toc.html', function (d){
+            $(d).appendTo($sidebar);
+            highlightToc();
+            highlightLibraryHeader();
+          });
+          $sidebar.insertAfter($('header').first());
+        });
+        </script></head>
+   <body>
+      <header>
+         <div class="searchbox">
+            <form id="search-form" class="search" name="search-form" role="search"><input id="search-form-input" name="q" title="search" type="search" lang="en" placeholder="Search Neo4j docs..." aria-label="Search Neo4j documentation" max-length="128" required="required"></input><input id="search-form-button" type="submit" value="Search"></input></form>
+         </div>
+         <ul class="documentation-library">
+            <li><a href="https://neo4j.com/docs/operations-manual/3.4/">Operations Manual</a></li>
+            <li><a href="../../index.html">Developer Manual</a></li>
+            <li><a href="https://neo4j.com/docs/ogm-manual/3.0/">OGM Manual</a></li>
+            <li><a href="https://neo4j.com/docs/graph-algorithms/3.4/">Graph Algorithms</a></li>
+            <li><a href="https://neo4j.com/docs/java-reference/3.4/">Java Reference</a></li>
+         </ul>
+         <nav id="header-nav"><span class="nav-previous"><a accesskey="p" href="../execution-plans/shortestpath-planning/index.html"><span class="fa fa-long-arrow-left" aria-hidden="true"></span>Shortest path planning</a></span><span class="nav-current">
+               <p class="nav-title hidden">3.8.&nbsp;Deprecations, additions and compatibility</p></span><span class="nav-next"><a accesskey="n" href="../keyword-glossary/index.html">Glossary of keywords<span class="fa fa-long-arrow-right" aria-hidden="true"></span></a></span></nav>
+      </header>
+      <div id="search-results" class="hidden"></div>
+      <section class="section" id="cypher-deprecations-additions-removals-compatibility">
+         <div class="titlepage">
+            <div>
+               <div>
+                  <h2 class="title" style="clear: both"><a class="anchor" href="index.html#cypher-deprecations-additions-removals-compatibility"></a>3.8.&nbsp;Deprecations, additions and compatibility
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="abstract">
+            <p>Cypher is a language that is constantly evolving.
+               New features get added to the language continuously, and occasionally, some features become deprecated and are subsequently
+               removed.
+            </p>
+         </div>
+         <div class="itemizedlist">
+            <ul class="itemizedlist" style="list-style-type: disc; ">
+               <li class="listitem">
+                  <p class="simpara"><a class="link" href="index.html#cypher-deprecations-additions-removals" title="3.8.1.&nbsp;Removals, deprecations, additions and extensions">Removals, deprecations, additions and extensions</a></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: circle; ">
+                        <li class="listitem"><a class="link" href="index.html#cypher-deprecations-additions-removals-3.0" title="3.8.1.1.&nbsp;Version 3.0">Version 3.0</a></li>
+                        <li class="listitem"><a class="link" href="index.html#cypher-deprecations-additions-removals-3.1" title="3.8.1.2.&nbsp;Version 3.1">Version 3.1</a></li>
+                        <li class="listitem"><a class="link" href="index.html#cypher-deprecations-additions-removals-3.2" title="3.8.1.3.&nbsp;Version 3.2">Version 3.2</a></li>
+                        <li class="listitem"><a class="link" href="index.html#cypher-deprecations-additions-removals-3.3" title="3.8.1.4.&nbsp;Version 3.3">Version 3.3</a></li>
+                        <li class="listitem"><a class="link" href="index.html#cypher-deprecations-additions-removals-3.4" title="3.8.1.5.&nbsp;Version 3.4">Version 3.4</a></li>
+                     </ul>
+                  </div>
+               </li>
+               <li class="listitem"><a class="link" href="index.html#cypher-compatibility" title="3.8.2.&nbsp;Compatibility">Compatibility</a></li>
+               <li class="listitem"><a class="link" href="index.html#cypher-versions" title="3.8.3.&nbsp;Supported language versions">Supported language versions</a></li>
+            </ul>
+         </div>
+         <section class="section" id="cypher-deprecations-additions-removals">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#cypher-deprecations-additions-removals"></a>3.8.1.&nbsp;Removals, deprecations, additions and extensions
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>The following tables lists all the features which have been removed, deprecated, added or extended in Cypher.
+               Replacement syntax for deprecated and removed features are also indicated.
+            </p>
+            <section class="section" id="cypher-deprecations-additions-removals-3.0">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#cypher-deprecations-additions-removals-3.0"></a>3.8.1.1.&nbsp;Version 3.0
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <div class="informaltable">
+                  <div class="table" id="d0e60678">
+                     <table class="informaltable" border="1">
+                        <colgroup>
+                           <col class="col_1"></col>
+                           <col class="col_2"></col>
+                           <col class="col_3"></col>
+                           <col class="col_4"></col>
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th style="text-align: left; vertical-align: top; ">Feature</th>
+                              <th style="text-align: left; vertical-align: top; ">Type</th>
+                              <th style="text-align: left; vertical-align: top; ">Change</th>
+                              <th style="text-align: left; vertical-align: top; ">Details</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">has()</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Removed</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <a class="link" href="../functions/predicate/index.html#functions-exists" title="3.4.1.3.&nbsp;exists()">exists()</a></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">str()</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Removed</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <a class="link" href="../functions/string/index.html#functions-tostring" title="3.4.8.10.&nbsp;toString()">toString()</a></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">{parameter}</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Syntax</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <a class="link" href="../syntax/parameters/index.html" title="3.2.6.&nbsp;Parameters">$parameter</a></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/scalar/index.html#functions-properties" title="3.4.2.7.&nbsp;properties()">properties()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../clauses/call/index.html" title="3.3.17.&nbsp;CALL[&#8230;&#8203;YIELD]">CALL [...YIELD]</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Clause</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/spatial/index.html#functions-point-cartesian-2d" title="3.4.10.4.&nbsp;point() - Cartesian 2D">point() - Cartesian 2D</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/spatial/index.html#functions-point-wgs84-2d" title="3.4.10.2.&nbsp;point() - WGS 84 2D">point() - WGS 84 2D</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/spatial/index.html#functions-distance" title="3.4.10.1.&nbsp;distance()">distance()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../../extending-neo4j/procedures/index.html" title="6.1.&nbsp;Procedures">User-defined procedures</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/string/index.html#functions-tostring" title="3.4.8.10.&nbsp;toString()">toString()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Extended</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Now also allows Boolean values as input</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <section class="section" id="cypher-deprecations-additions-removals-3.1">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#cypher-deprecations-additions-removals-3.1"></a>3.8.1.2.&nbsp;Version 3.1
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <div class="informaltable">
+                  <div class="table" id="d0e60832">
+                     <table class="informaltable" border="1">
+                        <colgroup>
+                           <col class="col_1"></col>
+                           <col class="col_2"></col>
+                           <col class="col_3"></col>
+                           <col class="col_4"></col>
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th style="text-align: left; vertical-align: top; ">Feature</th>
+                              <th style="text-align: left; vertical-align: top; ">Type</th>
+                              <th style="text-align: left; vertical-align: top; ">Change</th>
+                              <th style="text-align: left; vertical-align: top; ">Details</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">rels()</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <a class="link" href="../functions/list/index.html#functions-relationships" title="3.4.4.8.&nbsp;relationships()">relationships()</a></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">toInt()</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <a class="link" href="../functions/scalar/index.html#functions-tointeger" title="3.4.2.16.&nbsp;toInteger()">toInteger()</a></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">lower()</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <a class="link" href="../functions/string/index.html#functions-tolower" title="3.4.8.9.&nbsp;toLower()">toLower()</a></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">upper()</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <a class="link" href="../functions/string/index.html#functions-toupper" title="3.4.8.11.&nbsp;toUpper()">toUpper()</a></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/scalar/index.html#functions-toboolean" title="3.4.2.14.&nbsp;toBoolean()">toBoolean()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../syntax/maps/index.html#cypher-map-projection" title="3.2.12.2.&nbsp;Map projection">Map projection</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Syntax</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../syntax/lists/index.html#cypher-pattern-comprehension" title="3.2.11.3.&nbsp;Pattern comprehension">Pattern comprehension</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Syntax</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../../extending-neo4j/cypher-functions/index.html" title="6.2.&nbsp;User-defined functions">User-defined functions</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../clauses/call/index.html" title="3.3.17.&nbsp;CALL[&#8230;&#8203;YIELD]">CALL...YIELD...WHERE</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Clause</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Extended</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Records returned by <code class="literal">YIELD</code> may be filtered further using <code class="literal">WHERE</code></p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <section class="section" id="cypher-deprecations-additions-removals-3.2">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#cypher-deprecations-additions-removals-3.2"></a>3.8.1.3.&nbsp;Version 3.2
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <div class="informaltable">
+                  <div class="table" id="d0e60983">
+                     <table class="informaltable" border="1">
+                        <colgroup>
+                           <col class="col_1"></col>
+                           <col class="col_2"></col>
+                           <col class="col_3"></col>
+                           <col class="col_4"></col>
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th style="text-align: left; vertical-align: top; ">Feature</th>
+                              <th style="text-align: left; vertical-align: top; ">Type</th>
+                              <th style="text-align: left; vertical-align: top; ">Change</th>
+                              <th style="text-align: left; vertical-align: top; ">Details</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">CYPHER planner=rule</code> (Rule planner)
+                                 </p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Removed</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>All queries now use the cost planner. Any query prepended thus will fall back to using Cypher 3.1.</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">CREATE UNIQUE</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Clause</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Removed</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Running such queries will fall back to using Cypher 3.1 (and use the rule planner)</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">START</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Clause</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Removed</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Running such queries will fall back to using Cypher 3.1 (and use the rule planner)</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">MATCH (n)-[rs*]-() RETURN rs</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Syntax</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <code class="literal">MATCH p=(n)-[*]-() RETURN relationships(p) AS rs</code></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">MATCH (n)-[:A|:B|:C {foo: 'bar'}]-() RETURN n</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Syntax</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <code class="literal">MATCH (n)-[:A|B|C {foo: 'bar'}]-() RETURN n</code></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">MATCH (n)-[x:A|:B|:C]-() RETURN n</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Syntax</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <code class="literal">MATCH (n)-[x:A|B|C]-() RETURN n</code></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">MATCH (n)-[x:A|:B|:C*]-() RETURN n</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Syntax</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Deprecated</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Replaced by <code class="literal">MATCH (n)-[x:A|B|C*]-() RETURN n</code></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../../extending-neo4j/cypher-functions/index.html#user-defined-aggregation-functions" title="6.2.3.&nbsp;User-defined aggregation functions">User-defined aggregation functions</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../schema/index/index.html#query-schema-index-introduction" title="3.5.1.1.&nbsp;Introduction">Composite indexes</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Index</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../schema/constraints/index.html#query-constraint-node-key" title="3.5.2.6.&nbsp;Node Keys">Node Key</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Index</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Neo4j Enterprise Edition only</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">CYPHER runtime=compiled</code> (Compiled runtime)
+                                 </p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Neo4j Enterprise Edition only</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/list/index.html#functions-reverse-list" title="3.4.4.9.&nbsp;reverse()">reverse()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Extended</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Now also allows a list as input</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/aggregating/index.html#functions-max" title="3.4.3.4.&nbsp;max()">max()</a>, <a class="link" href="../functions/aggregating/index.html#functions-min" title="3.4.3.5.&nbsp;min()">min()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Extended</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Now also supports aggregation over a set containing both strings and numbers</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <section class="section" id="cypher-deprecations-additions-removals-3.3">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#cypher-deprecations-additions-removals-3.3"></a>3.8.1.4.&nbsp;Version 3.3
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <div class="informaltable">
+                  <div class="table" id="d0e61194">
+                     <table class="informaltable" border="1">
+                        <colgroup>
+                           <col class="col_1"></col>
+                           <col class="col_2"></col>
+                           <col class="col_3"></col>
+                           <col class="col_4"></col>
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th style="text-align: left; vertical-align: top; ">Feature</th>
+                              <th style="text-align: left; vertical-align: top; ">Type</th>
+                              <th style="text-align: left; vertical-align: top; ">Change</th>
+                              <th style="text-align: left; vertical-align: top; ">Details</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">START</code></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Clause</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Removed</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>As in Cypher 3.2, any queries using the <code class="literal">START</code> clause will revert back to Cypher 3.1 <code class="literal">planner=rule</code>.
+                                    However, there are <a class="link" href="../schema/index/index.html#explicit-indexes-procedures" title="3.5.1.20.&nbsp;Use built-in procedures to manage and use explicit indexes">built-in procedures</a> for accessing explicit indexes that will enable users to use the current version of Cypher and the cost planner together
+                                    with these indexes.
+                                    An example of this is <code class="literal">CALL db.index.explicit.searchNodes('my_index','email:me*')</code>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><code class="literal">CYPHER runtime=slotted</code> (Faster interpreted runtime)
+                                 </p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Neo4j Enterprise Edition only</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/aggregating/index.html#functions-max" title="3.4.3.4.&nbsp;max()">max()</a>, <a class="link" href="../functions/aggregating/index.html#functions-min" title="3.4.3.5.&nbsp;min()">min()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Extended</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Now also supports aggregation over sets containing lists of strings and/or numbers, as well as over sets containing strings,
+                                    numbers, and lists of strings and/or numbers
+                                 </p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <section class="section" id="cypher-deprecations-additions-removals-3.4">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h4 class="title"><a class="anchor" href="index.html#cypher-deprecations-additions-removals-3.4"></a>3.8.1.5.&nbsp;Version 3.4
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+               <div class="informaltable">
+                  <div class="table" id="d0e61272">
+                     <table class="informaltable" border="1">
+                        <colgroup>
+                           <col class="col_1"></col>
+                           <col class="col_2"></col>
+                           <col class="col_3"></col>
+                           <col class="col_4"></col>
+                        </colgroup>
+                        <thead>
+                           <tr>
+                              <th style="text-align: left; vertical-align: top; ">Feature</th>
+                              <th style="text-align: left; vertical-align: top; ">Type</th>
+                              <th style="text-align: left; vertical-align: top; ">Change</th>
+                              <th style="text-align: left; vertical-align: top; ">Details</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../syntax/spatial/index.html" title="3.2.13.&nbsp;Spatial values">Spatial point types</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Amendment</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>A point&#8201;&#8212;&#8201;irrespective of which Coordinate Reference System is used&#8201;&#8212;&#8201;can be stored as a property and is able to be backed
+                                    by an index. Prior to this, a point was a virtual property only.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/spatial/index.html#functions-point-cartesian-3d" title="3.4.10.5.&nbsp;point() - Cartesian 3D">point() - Cartesian 3D</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/spatial/index.html#functions-point-wgs84-3d" title="3.4.10.3.&nbsp;point() - WGS 84 3D">point() - WGS 84 3D</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/scalar/index.html#functions-randomuuid" title="3.4.2.8.&nbsp;randomUUID()">randomUUID()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../syntax/temporal/index.html" title="3.2.10.&nbsp;Temporal (Date/Time) values">Temporal types</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Supports storing, indexing and working with the following temporal types: Date, Time, LocalTime, DateTime, LocalDateTime and
+                                    Duration.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/temporal/index.html" title="3.4.9.&nbsp;Temporal functions">Temporal functions</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functions allowing for the creation and manipulation of values for each temporal type&#8201;&#8212;&#8201;<span class="emphasis"><em>Date</em></span>, <span class="emphasis"><em>Time</em></span>, <span class="emphasis"><em>LocalTime</em></span>, <span class="emphasis"><em>DateTime</em></span>, <span class="emphasis"><em>LocalDateTime</em></span> and <span class="emphasis"><em>Duration</em></span>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../syntax/operators/index.html#query-operators-temporal" title="3.2.7.8.&nbsp;Temporal operators">Temporal operators</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Functionality</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Added</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Operators allowing for the manipulation of values for each temporal type&#8201;&#8212;&#8201;<span class="emphasis"><em>Date</em></span>, <span class="emphasis"><em>Time</em></span>, <span class="emphasis"><em>LocalTime</em></span>, <span class="emphasis"><em>DateTime</em></span>, <span class="emphasis"><em>LocalDateTime</em></span> and <span class="emphasis"><em>Duration</em></span>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p><a class="link" href="../functions/string/index.html#functions-tostring" title="3.4.8.10.&nbsp;toString()">toString()</a></p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Function</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Extended</p>
+                              </td>
+                              <td style="text-align: left; vertical-align: top; ">
+                                 <p>Now also allows temporal values as input (i.e. values of type <span class="emphasis"><em>Date</em></span>, <span class="emphasis"><em>Time</em></span>, <span class="emphasis"><em>LocalTime</em></span>, <span class="emphasis"><em>DateTime</em></span>, <span class="emphasis"><em>LocalDateTime</em></span> or <span class="emphasis"><em>Duration</em></span>).
+                                 </p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+         </section>
+         <section class="section" id="cypher-compatibility">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#cypher-compatibility"></a>3.8.2.&nbsp;Compatibility
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>Older versions of the language can still be accessed if required.
+               There are two ways to select which version to use in queries.
+            </p>
+            <div class="orderedlist">
+               <ol class="orderedlist" type="1">
+                  <li class="listitem">Setting a version for all queries:
+                     You can configure your database with the configuration parameter <code class="literal">cypher.default_language_version</code>, and enter which version you&#8217;d like to use (see <a class="xref" href="index.html#cypher-versions" title="3.8.3.&nbsp;Supported language versions">Section&nbsp;3.8.3, &#8220;Supported language versions&#8221;</a>).
+                     Every Cypher query will use this version, provided the query hasn&#8217;t explicitly been configured as described in the next item
+                     below.
+                  </li>
+                  <li class="listitem">Setting a version on a query by query basis:
+                     The other method is to set the version for a particular query.
+                     Prepending a query with <code class="literal">CYPHER 2.3</code> will execute the query with the version of Cypher included in Neo4j 2.3.
+                  </li>
+               </ol>
+            </div>
+            <p>Below is an example using the <code class="literal">has()</code> function:
+            </p><pre class="programlisting highlight"><code data-lang="cypher">CYPHER 2.3
+MATCH (n:Person)
+WHERE has(n.age)
+RETURN n.name, n.age</code></pre></section>
+         <section class="section" id="cypher-versions">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h3 class="title"><a class="anchor" href="index.html#cypher-versions"></a>3.8.3.&nbsp;Supported language versions
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <p>Neo4j 3.4 supports the following versions of the Cypher language:</p>
+            <div class="itemizedlist">
+               <ul class="itemizedlist" style="list-style-type: disc; ">
+                  <li class="listitem">Neo4j Cypher 3.4</li>
+                  <li class="listitem">Neo4j Cypher 3.3</li>
+                  <li class="listitem">Neo4j Cypher 2.3</li>
+               </ul>
+            </div>
+            <div class="admonitionblock tip">
+               <table>
+                  <tbody>
+                     <tr>
+                        <td class="icon"><i class="fa icon-tip" title="tip"></i></td>
+                        <td class="content">
+                           <p>Each release of Neo4j supports a limited number of old Cypher Language Versions.
+                              When you upgrade to a new release of Neo4j, please make sure that it supports the Cypher language version you need.
+                              If not, you may need to modify your queries to work with a newer Cypher language version.
+                           </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </section>
+      </section>
+      <footer><script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          //Allow Linker
+          ga('create', 'UA-1192232-34','auto', {'allowLinker': true});
+          ga('send', 'pageview');
+          // Load the plugin.
+          ga('require', 'linker');
+          // Define which domains to autoLink.
+          ga('linker:autoLink', ['neo4j.org','neo4j.com','neotechnology.com','graphdatabases.com','graphconnect.com']);
+        </script><script type="text/javascript">
+          document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script>Munchkin.init('773-GON-065');</script></footer>
+   </body>
+</html>
